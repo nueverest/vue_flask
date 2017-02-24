@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Entry Form</title>
+
+  <link rel="shortcut icon" href="{[ favicon ]}">
+
+  <script src="https://unpkg.com/vue@2.0.7/dist/vue.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
+  <script src="https://unpkg.com/vuefire@1.3.0/dist/vuefire.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h2>Add User</h2>
+    {% if error %}<p class=error><strong>Error:</strong> {[ error ]}{% endif %}
+    <form action="/" method=post>
+      <dl>
+        <dt>First Name:</dt>
+        <dd><input type="text" name="firstname" /></dd>
+        <dt>Last Name:</dt>
+        <dd><input type="text" name="lastname" /></dd>
+        <dt>Date of Birth:</dt>
+        <dd><input type="date" name="dob" /></dd>
+        <dt>Zip Code:</dt>
+        <dd><input type="text" name="zipcode" /></dd>
+        <dd><button v-if="user.uid" v-on:click="addUser">Add User</button></dd>
+      </dl>
+    </form>
+
+    <h1>Messages</h1>
+    <p>uid: {{ user.uid }}</p>
+    <p>message path: /messages/{{ user.uid }}</p>
+    <p>num messages: {{ messages.length }}</p>
+    <button v-if="user.uid"
+            v-on:click="addMessage">Add Message</button>
+    <ul>
+      <li v-for="message in messages"><button v-on:click="removeMessage(message)">remove</button> {{ message }}</li>
+    </ul>
+  </div>
+  <script>
+    // Initialize Firebase
+    firebase.database.enableLogging(false);  // toggle on for debug (it's noisy)
+
+    var db = firebase.initializeApp({
+      apiKey: "AIzaSyBZvJmFu8mrlliWmsYxfmO4UAb05wzpDZ8",
+      authDomain: "wordfire-251e1.firebaseio.com",
+      databaseURL: "https://wordfire-251e1.firebaseio.com",
+      storageBucket: "wordfire-251e1.appspot.com",
+      messagingSenderId: "436757678533"
+    }).database();
+
+    new Vue({
+      el: '#app',
+      beforeCreate: function() {
+        // Setup Firebase onAuthStateChanged handler
+        // https://firebase.google.com/docs/reference/js/firebase.auth.Auth
+        // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#onAuthStateChanged
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            this.user = user;
+            console.log(user.uuid);
+            // https://github.com/vuejs/vuefire/blob/master/src/vuefire.js#L169
+            this.$bindAsArray('messages', db.ref('messages/' + user.uid))
+          } else {
+            // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signInAnonymously
+            firebase.auth().signInAnonymously().catch(console.error)
+          }
+        }.bind(this))
+      },
+      // Initialize reactive props, bind later when user is available
+      data: {
+        user: {},
+        messages: []
+      },
+      // Demo add/remove to show it all works
+      methods: {
+        addMessage: function() {
+            // https://firebase.google.com/docs/reference/js/firebase.database.Reference#push
+            this.$firebaseRefs.messages.push({
+              text: 'new message',
+              timestamp: Date()
+            })
+        },
+        removeMessage: function(message) {
+            // https://firebase.google.com/docs/reference/js/firebase.database.Reference#remove
+            this.$firebaseRefs.messages.child(message['.key']).remove()
+        }
+      }
+    })
+  </script>
+</body>
+</html>

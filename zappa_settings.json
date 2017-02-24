@@ -1,0 +1,7 @@
+{
+    "dev": {
+        "s3_bucket": "nueverest",
+        "aws_region": "us-west-2",
+        "app_function": "vue_flask.app"
+    }
+}
