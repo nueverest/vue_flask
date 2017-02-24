@@ -1,6 +1,3 @@
-# Python
-from urlparse import urlparse
-
 # Flask
 from flask import Flask, render_template, request
 from flask import url_for as local_url_for
