@@ -1,11 +1,16 @@
 # vue_flask
 Serverless implementation of Vue.js, Flask, and Firebase
 
-# Features
-- Vue.js Javascript Frontend
-- Zurb Foundation 6 CSS Frontend Framework
-- Flask Python Backend
-- Realtime Firebase Data Management
+# Technologies Used
+- Vue.js - Frontend Javascript Framework https://vuejs.org/
+- Vuefire - Firebase Anonymous Authentication https://github.com/chrisbraddock/vuefire-auth-demo
+- Flask - Python-Based Web Framework http://flask.pocoo.org/
+- Flask-S3 - Serve Static Media from AWS S3. https://flask-s3.readthedocs.io/en/latest/
+- Firebase - Realtime Persistent Datastore https://firebase.google.com/
+- Zurb Foundation 6 - CSS Frontend Framework http://foundation.zurb.com/
+- Blowdrycss - Python-based Atomic CSS compiler https://github.com/nueverest/blowdrycss
+- Zappa - Python-based serverless deployment interface https://github.com/Miserlou/Zappa
+- Amazon Web Services (AWS) - Cloud Infrastructure https://aws.amazon.com/
 
 # Requirements
 - Python 2.7.x (Zappa will NOT work with Python 3.x because AWS Lambda is only 2.7.x compatible.)
