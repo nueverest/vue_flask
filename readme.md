@@ -9,7 +9,7 @@ Serverless implementation of Vue.js, Flask, and Firebase
 
 # Requirements
 - Python 2.7.x
-- See Requirements.txt
+- See requirements.txt
 
 # How to Setup Firebase
 - Setup a firebase account.
@@ -20,8 +20,8 @@ Serverless implementation of Vue.js, Flask, and Firebase
 
 # How to Deploy
 - Create and Activate a virtual environment for this project. Reference: https://virtualenv.pypa.io/en/stable/installation/
-- `pip install zappa`
-- Place aws creditials with correct permissions in <path to user folder>\.aws
+- `pip install requirements.txt`
+- Place aws creditials with correct permissions in `<path to user folder>\.aws`
 - Open zappa_settings.json and change "s3_bucket" and "aws_region" to match your AWS account.
 - `zappa deploy dev`
 - Navigate to generated url.
