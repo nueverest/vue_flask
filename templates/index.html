@@ -41,7 +41,7 @@
 
       <div class="row padding-top-20">
         <div class="inline-block width-10p"></div>
-        <div class="inline-block"><input v-show="isValid" type="submit" value="Add Person"></div>
+        <div class="inline-block"><input v-bind:disabled="!isValid" type="submit" value="Add Person"></div>
       </div>
     </form>
 
