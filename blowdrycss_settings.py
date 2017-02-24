@@ -101,8 +101,8 @@ __project__ = 'blowdrycss'
 # Change these to whatever you want.
 cwd = getcwd()
 markdown_directory = path.join(cwd, 'docs', 'markdown')
-project_directory = path.join(cwd, 'static')
-css_directory = path.join(project_directory, 'css')
+project_directory = path.join(cwd, 'templates')
+css_directory = path.join(cwd, 'static', 'css')
 docs_directory = path.join(cwd, 'docs')
 
 # Logging
