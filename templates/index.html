@@ -13,29 +13,44 @@
 </head>
 <body>
   <div id="app">
-    <h1 class="green">Add User</h1>
-    {% if error %}<p class=error><strong>Error:</strong> {[ error ]}{% endif %}
-    <!--<form action="/" method=post>-->
-      <!--<dl>-->
-        <!--<dt>First Name:</dt>-->
-        <!--<dd><input type="text" name="firstname" /></dd>-->
-        <!--<dt>Last Name:</dt>-->
-        <!--<dd><input type="text" name="lastname" /></dd>-->
-        <!--<dt>Date of Birth:</dt>-->
-        <!--<dd><input type="date" name="dob" /></dd>-->
-        <!--<dt>Zip Code:</dt>-->
-        <!--<dd><input type="text" name="zipcode" /></dd>-->
-        <!--<dd><button v-if="user.uid" v-on:click="addUser">Add User</button></dd>-->
-      <!--</dl>-->
-    <!--</form>-->
+    <h1>Persons</h1>
 
-    <h1>Messages</h1>
-    <p>uid: {{ user.uid }}</p>
-    <p>message path: /messages/{{ user.uid }}</p>
-    <p>number of messages: {{ messages.length }}</p>
-    <button v-if="user.uid" v-on:click="addMessage">Add Message</button>
-    <ul>
-      <li v-for="message in messages"><button v-on:click="removeMessage(message)">remove</button> {{ message }}</li>
+    <form id="form" v-on:submit.prevent="addPerson">
+      <div class="row">
+        <div class="inline-block width-10p">First Name</div>
+        <div class="inline-block"><input type="text" v-model="newPerson.firstname" placeholder="First Name"></div>
+        <div class="inline-block darkred" v-show="!validation.firstname">First Name cannot be empty.</div>
+      </div>
+
+      <div class="row">
+        <div class="inline-block width-10p">Last Name</div>
+        <div class="inline-block"><input type="text" v-model="newPerson.lastname" placeholder="Last Name"></div>
+        <div class="inline-block darkred" v-show="!validation.lastname">Last Name cannot be empty.</div>
+      </div>
+
+      <div class="row">
+        <div class="inline-block width-10p">Date of Birth</div>
+        <div class="inline-block"><input type="date" v-model="newPerson.dob" placeholder="Date of Birth"></div>
+        <div class="inline-block darkred" v-show="!validation.dob">Date of birth must exist in the past.</div>
+      </div>
+      <div class="row">
+        <div class="inline-block width-10p">Zip Code</div>
+        <div class="inline-block"><input type="number" v-model="newPerson.zipcode" placeholder="Zip Code"></div>
+        <div class="inline-block darkred" v-show="!validation.zipcode">Must be a valid US Zip Code of the form 55555 or 55555-4444.</div>
+      </div>
+
+      <div class="row padding-top-20">
+        <div class="inline-block width-10p"></div>
+        <div class="inline-block"><input v-show="isValid" type="submit" value="Add Person"></div>
+      </div>
+    </form>
+
+    <!--<p>uid: {{ user.uid }}</p>-->
+    <!--<p>person path: /persons/{{ user.uid }}</p>-->
+    <!--<p>number of persons: {{ persons.length }}</p>-->
+    <!--<button v-if="user.uid" v-on:click="addPerson">Add Person</button>-->
+    <ul class="margin-top-50">
+      <li v-for="person in persons"><button v-on:click="removePerson(person)">remove</button> {{ person }}</li>
     </ul>
   </div>
   <script>
@@ -50,6 +65,9 @@
       messagingSenderId: "436757678533"
     }).database();
 
+    // Member variables
+    var zipcodeRE = /^\d{5}(?:-\d{4})?$/;
+
     new Vue({
       el: '#app',
       beforeCreate: function() {
@@ -59,29 +77,55 @@
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             this.user = user;
-            this.$bindAsArray('messages', db.ref('messages/' + user.uid));  // https://github.com/vuejs/vuefire/blob/master/src/vuefire.js#L169
+            this.$bindAsArray('persons', db.ref('persons/' + user.uid));  // https://github.com/vuejs/vuefire/blob/master/src/vuefire.js#L169
           }
           else {
-            firebase.auth().signInAnonymously().catch(console.error);       // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signInAnonymously
+            firebase.auth().signInAnonymously().catch(console.error);     // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signInAnonymously
           }
         }.bind(this))
       },
       // Initialize reactive props, bind later when user is available
       data: {
         user: {},
-        messages: []
+        persons: [],
+        newPerson: {
+          firstname: '',
+          lastname: '',
+          dob: '',
+          zipcode: ''
+        }        
       },
       // Demo add/remove to show it all works
       methods: {
-        addMessage: function() {
-            // https://firebase.google.com/docs/reference/js/firebase.database.Reference#push
-            this.$firebaseRefs.messages.push({
-              text: 'new message',
-              timestamp: Date()
-            })
+        addPerson: function() {
+            if(this.isValid) {
+              // https://firebase.google.com/docs/reference/js/firebase.database.Reference#push
+              this.$firebaseRefs.persons.push({
+                firstname: this.newPerson.firstname,
+                lastname: this.newPerson.lastname,
+                dob: this.newPerson.dob,
+                zipcode: this.newPerson.zipcode
+              })
+            }
         },
-        removeMessage: function(message) {
-            this.$firebaseRefs.messages.child(message['.key']).remove();    // https://firebase.google.com/docs/reference/js/firebase.database.Reference#remove
+        removePerson: function(person) {
+            this.$firebaseRefs.persons.child(person['.key']).remove();    // https://firebase.google.com/docs/reference/js/firebase.database.Reference#remove
+        }
+      },
+      computed: {
+        validation: function() {
+          return {
+            firstname: !!this.newPerson.firstname.trim(),
+            lastname: !!this.newPerson.lastname.trim(),
+            dob: new Date(this.newPerson.dob) < Date.now(),
+            zipcode: zipcodeRE.test(this.newPerson.zipcode)
+          }
+        },
+        isValid: function () {
+          var validation = this.validation
+          return Object.keys(validation).every(function (key) {
+            return validation[key]
+          })
         }
       }
     })
