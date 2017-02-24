@@ -35,6 +35,9 @@ event.
 - On the Overview page for your project click "Add Firebase to your web app".
 - Use this data to replace apiKey, authDomain, databaseURL, storageBucket, and messagingSenderId in `templates/index.html`.
 
+# Change Flask-S3 Config in vue_flask.py
+- app.config['FLASKS3_BUCKET_NAME'] = 'your_s3_bucket_name_here'
+
 # How to Deploy using Zappa - Serverless.
 - Create and Activate a virtual environment for this project. Reference: https://virtualenv.pypa.io/en/stable/installation/
 - `pip install requirements.txt`
