@@ -40,11 +40,11 @@ event.
 - `pip install requirements.txt`
 - Place aws credentials with correct permissions in `<path to user folder>\.aws\credentials` Reference: https://github.com/Miserlou/Zappa/issues/244
 - Open zappa_settings.json and change "s3_bucket" and "aws_region" to match your AWS account.
-- `zappa deploy dev`
+- `zappa deploy production`
 - Navigate to generated url.
 
 # How to Update Deployment
-- `zappa update dev`
+- `zappa update production`
 
 # How to Undeploy
-- `zappa undeploy dev`
+- `zappa undeploy production`
