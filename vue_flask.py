@@ -1,5 +1,7 @@
 from flask import Flask, render_template
-from flask_s3 import FlaskS3, url_for
+from flask import url_for as local_url_for
+from flask_s3 import FlaskS3
+from flask_s3 import url_for as s3_url_for
 
 
 class CustomFlask(Flask):
@@ -29,8 +31,9 @@ s3 = FlaskS3(app)
 
 @app.route('/')
 def index():
-    favicon = url_for('static', filename='favicon.ico')
-    return render_template('index.html', favicon=favicon)
+    favicon = s3_url_for('static', filename='favicon.ico')
+    blowdrycss = local_url_for('static', filename='css/blowdry.css')
+    return render_template('index.html', favicon=favicon, blowdrycss=blowdrycss)
 
 
 if __name__ == '__main__':
