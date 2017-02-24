@@ -1,4 +1,4 @@
-# vue-flask
+# vue_flask
 Serverless implementation of Vue.js, Flask, and Firebase
 
 # Features
