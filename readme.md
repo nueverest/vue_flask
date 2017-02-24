@@ -1,6 +1,18 @@
 # vue_flask
 Serverless implementation of Vue.js, Flask, and Firebase
 
+# Benefits of Serverless (Actually there is a server but it only runs 20-60 milliseconds at a time.)
+- High Performance
+- High Availability
+- High Scalability
+- No Server and associated infrastructure to understand and maintain.
+
+# Disadvantage of Serverless
+- Deployment and Update actions require the entire project to be uploaded. Even a tiny change such as adding one 
+semi-colon to a file requires the full project to be uploaded.  Projects take minutes to upload.
+- Version control is a little more challenging since discipline is required to add tags for each deploy and update 
+event.
+
 # Technologies Used
 - Vue.js - Frontend Javascript Framework https://vuejs.org/
 - Vuefire - Firebase Anonymous Authentication https://github.com/chrisbraddock/vuefire-auth-demo
