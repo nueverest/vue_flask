@@ -36,8 +36,7 @@ s3 = FlaskS3(app)
 def index():
     favicon = select_url_for('static', filename='favicon.ico')
     blowdrycss = select_url_for('static', filename='css/blowdry.min.css')
-    test = is_production()
-    return render_template('index.html', favicon=favicon, blowdrycss=blowdrycss, test=test)
+    return render_template('index.html', favicon=favicon, blowdrycss=blowdrycss)
 
 
 def is_production():
