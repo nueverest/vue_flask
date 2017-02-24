@@ -32,7 +32,7 @@
     <h1>Messages</h1>
     <p>uid: {{ user.uid }}</p>
     <p>message path: /messages/{{ user.uid }}</p>
-    <p>num messages: {{ messages.length }}</p>
+    <p>number of messages: {{ messages.length }}</p>
     <button v-if="user.uid" v-on:click="addMessage">Add Message</button>
     <ul>
       <li v-for="message in messages"><button v-on:click="removeMessage(message)">remove</button> {{ message }}</li>
@@ -59,11 +59,10 @@
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             this.user = user;
-            // https://github.com/vuejs/vuefire/blob/master/src/vuefire.js#L169
-            this.$bindAsArray('messages', db.ref('messages/' + user.uid))
-          } else {
-            // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signInAnonymously
-            firebase.auth().signInAnonymously().catch(console.error)
+            this.$bindAsArray('messages', db.ref('messages/' + user.uid));  // https://github.com/vuejs/vuefire/blob/master/src/vuefire.js#L169
+          }
+          else {
+            firebase.auth().signInAnonymously().catch(console.error);       // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signInAnonymously
           }
         }.bind(this))
       },
@@ -82,8 +81,7 @@
             })
         },
         removeMessage: function(message) {
-            // https://firebase.google.com/docs/reference/js/firebase.database.Reference#remove
-            this.$firebaseRefs.messages.child(message['.key']).remove()
+            this.$firebaseRefs.messages.child(message['.key']).remove();    // https://firebase.google.com/docs/reference/js/firebase.database.Reference#remove
         }
       }
     })

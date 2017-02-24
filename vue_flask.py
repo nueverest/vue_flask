@@ -33,11 +33,18 @@ s3 = FlaskS3(app)
 def index():
     favicon = select_url_for('static', filename='favicon.ico')
     blowdrycss = select_url_for('static', filename='css/blowdry.min.css')
-    return render_template('index.html', favicon=favicon, blowdrycss=blowdrycss)
+    # foundation_css = select_url_for('static', filename='css/foundation.min.css')
+    # foundation_js = select_url_for('static', filename='js/foundation.min.js')
+    return render_template(
+        'index.html',
+        favicon=favicon,
+        blowdrycss=blowdrycss,
+    )
 
 
 def is_production():
     """ Determines if app is running on the production server or not.
+
     Get Current URI.
     Extract root location.
     Compare root location against developer server value 127.0.0.1:5000.
