@@ -34,9 +34,9 @@
         <div class="inline-block darkred" v-show="!validation.dob">Date of birth must exist in the past.</div>
       </div>
       <div class="row">
-        <div class="inline-block width-10p">Zip Code</div>
-        <div class="inline-block"><input type="number" v-model="newPerson.zipcode" placeholder="Zip Code"></div>
-        <div class="inline-block darkred" v-show="!validation.zipcode">Must be a valid US Zip Code of the form 55555 or 55555-4444.</div>
+        <div class="inline-block width-10p">US Zip Code</div>
+        <div class="inline-block"><input type="text" v-model="newPerson.zipcode" placeholder="US Zip Code"></div>
+        <div class="inline-block darkred" v-show="!validation.zipcode">US Zip Code format 55555, 55555-4444, or 55555 4444.</div>
       </div>
 
       <div class="row padding-top-20">
@@ -66,7 +66,7 @@
     }).database();
 
     // Member variables
-    var zipcodeRE = /^\d{5}(?:-\d{4})?$/;
+    var zipcodeRE = /^([0-9]{5})(?:[-\s]*([0-9]{4}))?$/;        // reference: http://stackoverflow.com/a/160880/1783439
 
     new Vue({
       el: '#app',
