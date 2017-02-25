@@ -128,7 +128,8 @@
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             this.user = user;
-            this.$bindAsArray('persons', db.ref('persons/' + user.uid));  // https://github.com/vuejs/vuefire/blob/master/src/vuefire.js#L169
+            this.$bindAsArray('persons', db.ref('persons'));
+//            this.$bindAsArray('persons', db.ref('persons/' + user.uid));  // https://github.com/vuejs/vuefire/blob/master/src/vuefire.js#L169
           }
           else {
             firebase.auth().signInAnonymously().catch(console.error);     // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signInAnonymously
