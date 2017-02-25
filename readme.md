@@ -16,14 +16,14 @@ event.
 # Technologies Used
 - Vue.js - Frontend Javascript Framework https://vuejs.org/
 - Vuefire - Firebase Anonymous Authentication https://github.com/chrisbraddock/vuefire-auth-demo
-- Flask - Python-Based Web Framework http://flask.pocoo.org/
+- Flask - Python Web Framework http://flask.pocoo.org/
 - Flask-S3 - Serve Static Media from AWS S3. https://flask-s3.readthedocs.io/en/latest/
 - Firebase - Realtime Persistent Datastore https://firebase.google.com/
 - Zurb Foundation 6 - CSS Frontend Framework http://foundation.zurb.com/
-- Blowdrycss - Python-based Atomic CSS compiler https://github.com/nueverest/blowdrycss
+- Blowdrycss - Python Atomic CSS compiler https://github.com/nueverest/blowdrycss
 - Google Material Icons - Icons that behave like fonts https://google.github.io/material-design-icons/
-- Zappa - Python-based serverless deployment interface https://github.com/Miserlou/Zappa
-- Amazon Web Services (AWS) - Cloud Infrastructure https://aws.amazon.com/
+- Zappa - Python serverless deployment interface https://github.com/Miserlou/Zappa
+- Amazon Web Services (AWS) - Cloud Infrastructure - S3, Lambda, API Gateway, CloudWatch, IAM https://aws.amazon.com/
 
 # Requirements
 - Python 2.7.x (Zappa will NOT work with Python 3.x because AWS Lambda is only 2.7.x compatible.)

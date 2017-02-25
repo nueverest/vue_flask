@@ -104,7 +104,9 @@
               <div class="small-3 columns">US Zip Code</div>
             </div>
             <div class="row bgc-alternate" v-for="person in persons">
-              <div class="small-1 columns text-align-center hb85276" v-on:click="removePerson(person)"><i class="material-icons font-size-18-i">&#xE92B;</i></div>
+              <div class="small-1 columns text-align-center hb85276" v-on:click="removePerson(person)">
+                <i class="material-icons font-size-18-i cursor-pointer">&#xE92B;</i>
+              </div>
               <div class="small-4 columns">{{ person.firstname }} {{ person.lastname }}</div>
               <div class="small-4 columns">{{ person.dob }}</div>
               <div class="small-3 columns">{{ person.zipcode }}</div>
