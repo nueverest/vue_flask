@@ -30,14 +30,14 @@
             <form id="form" class="form input-underline" v-on:submit.prevent="addPerson">
               <div class="row">
                 <div class="small-12 columns">
-                  First Name <span class="darkred float-right" v-show="!validation.firstname">Required</span>
+                  First Name <span class="hb85276 float-right" v-show="!validation.firstname">Required</span>
                   <input type="text" v-model="newPerson.firstname" placeholder="Xithurian">
                 </div>
               </div>
 
               <div class="row margin-top-15">
                 <div class="small-12 columns">
-                  Last Name <span class="darkred float-right" v-show="!validation.lastname">Required</span>
+                  Last Name <span class="hb85276 float-right" v-show="!validation.lastname">Required</span>
                   <input type="text" v-model="newPerson.lastname" placeholder="Ulon">
                 </div>
               </div>
@@ -46,8 +46,8 @@
                 <div class="small-12 columns">
                   <!--Date Input Formatting Reference: http://stackoverflow.com/a/23683687/1783439-->
                   Date of Birth
-                  <span class="darkred float-right" v-show="!validation.dobrequired">Required</span>
-                  <span class="darkred float-right" v-show="validation.dobrequired && !validation.dob">Past date <span class="display-large-up">only</span></span>
+                  <span class="hb85276 float-right" v-show="!validation.dobrequired">Required</span>
+                  <span class="hb85276 float-right" v-show="validation.dobrequired && !validation.dob">Past date <span class="display-large-up">only</span></span>
                   <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" v-model="newPerson.dob" placeholder="mm/dd/yyyy">
                 </div>
               </div>
@@ -55,8 +55,8 @@
               <div class="row margin-top-15">
                 <div class="small-12 columns">
                   US Zip Code
-                  <span class="darkred float-right" v-show="!validation.ziprequired">Required</span>
-                  <span class="darkred float-right" v-show="validation.ziprequired && !validation.zipregex">Example: 85812</span>
+                  <span class="hb85276 float-right" v-show="!validation.ziprequired">Required</span>
+                  <span class="hb85276 float-right" v-show="validation.ziprequired && !validation.zipregex">Example: 85812</span>
                   <input type="text" v-model="newPerson.zipcode" placeholder="55555-4444">
                 </div>
               </div>
@@ -67,7 +67,7 @@
                     <i class="material-icons">&#xE87C;</i>
                     <span>Create Person</span>
                   </button>
-                  <div class="darkred" v-show="!validation.population">Population Limit (25 max)</div>
+                  <div class="hb85276" v-show="!validation.population">Population Limit (25 max)</div>
                 </div>
               </div>
             </form>
@@ -100,16 +100,18 @@
             <div class="row bgc-h859fcd white bold">
               <div class="small-1 columns text-align-center">&nbsp;</div>
               <div class="small-4 columns">Name</div>
+              <div class="small-1 large-1 columns display-xlarge-up-i">Age</div>
               <div class="small-4 columns">Date of Birth</div>
-              <div class="small-3 columns">US Zip Code</div>
+              <div class="small-3 large-2 columns">US Zip Code</div>
             </div>
             <div class="row bgc-alternate" v-for="person in persons">
               <div class="small-1 columns text-align-center hb85276" v-on:click="removePerson(person)">
                 <i class="material-icons font-size-18-i cursor-pointer">&#xE92B;</i>
               </div>
               <div class="small-4 columns">{{ person.firstname }} {{ person.lastname }}</div>
+              <div class="small-1 large-1 columns display-xlarge-up-i">{{ person.age }}</div>
               <div class="small-4 columns">{{ person.dob }}</div>
-              <div class="small-3 columns">{{ person.zipcode }}</div>
+              <div class="small-3 large-2 columns">{{ person.zipcode }}</div>
             </div>
           </div>
         </div>
@@ -171,12 +173,21 @@
                 firstname: this.newPerson.firstname,
                 lastname: this.newPerson.lastname,
                 dob: this.newPerson.dob,
-                zipcode: this.newPerson.zipcode
+                age: this.personsAge(this.newPerson.dob),
+                zipcode: this.newPerson.zipcode,
+                uid: this.user.uid
               })
             }
         },
         removePerson: function(person) {
             this.$firebaseRefs.persons.child(person['.key']).remove();    // https://firebase.google.com/docs/reference/js/firebase.database.Reference#remove
+        },
+        personsAge: function(dateString) {
+          // Fastest JS age calculator http://jsperf.com/birthday-calculation/15
+          var birthday = new Date(dateString);
+          var ageDifMs = Date.now() - birthday.getTime();
+          var ageDate = new Date(ageDifMs); // miliseconds from epoch
+          return Math.abs(ageDate.getFullYear() - 1970);
         }
       },
       computed: {
