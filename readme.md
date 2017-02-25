@@ -21,6 +21,7 @@ event.
 - Firebase - Realtime Persistent Datastore https://firebase.google.com/
 - Zurb Foundation 6 - CSS Frontend Framework http://foundation.zurb.com/
 - Blowdrycss - Python-based Atomic CSS compiler https://github.com/nueverest/blowdrycss
+- Google Material Icons - Icons that behave like fonts https://google.github.io/material-design-icons/
 - Zappa - Python-based serverless deployment interface https://github.com/Miserlou/Zappa
 - Amazon Web Services (AWS) - Cloud Infrastructure https://aws.amazon.com/
 

@@ -10,6 +10,7 @@
   <link rel="stylesheet" type="text/css" href="{[ foundationcss ]}">
   <link rel="stylesheet" type="text/css" href="{[ blowdrycss ]}">
   <link rel="stylesheet" type="text/css" href="{[ maincss ]}">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <script src="https://unpkg.com/vue@2.0.7/dist/vue.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
@@ -44,20 +45,30 @@
               <div class="row margin-top-15">
                 <div class="small-12 columns">
                   <!--Date Input Formatting Reference: http://stackoverflow.com/a/23683687/1783439-->
-                  Date of Birth <span class="darkred float-right" v-show="!validation.dob">Past date <span class="display-large-up">only</span></span>
+                  Date of Birth
+                  <span class="darkred float-right" v-show="!validation.dobrequired">Required</span>
+                  <span class="darkred float-right" v-show="validation.dobrequired && !validation.dob">Past date <span class="display-large-up">only</span></span>
                   <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" v-model="newPerson.dob" placeholder="mm/dd/yyyy">
                 </div>
               </div>
 
               <div class="row margin-top-15">
                 <div class="small-12 columns">
-                  US Zip Code <span class="darkred float-right" v-show="!validation.zipcode">Required</span>
+                  US Zip Code
+                  <span class="darkred float-right" v-show="!validation.ziprequired">Required</span>
+                  <span class="darkred float-right" v-show="validation.ziprequired && !validation.zipregex">Example: 85812</span>
                   <input type="text" v-model="newPerson.zipcode" placeholder="55555-4444">
                 </div>
               </div>
 
               <div class="row margin-top-45 text-align-center">
-                <div class="small-12 columns"><input v-bind:disabled="!isValid" type="submit" value="Create Person"></div>
+                <div class="small-12 columns">
+                  <button class="button font-size-20" v-bind:disabled="!isValid" type="submit" name="submit">
+                    <i class="material-icons">&#xE87C;</i>
+                    <span>Create Person</span>
+                  </button>
+                  <div class="darkred margin-top-10" v-show="!validation.population">Population Limit Reached (25 max)</div>
+                </div>
               </div>
             </form>
           </div>
@@ -118,6 +129,7 @@
 
     // Member variables
     var zipcodeRE = /^([0-9]{5})(?:[-\s]*([0-9]{4}))?$/;        // reference: http://stackoverflow.com/a/160880/1783439
+    var populationLimit = 25;
 
     new Vue({
       el: '#app',
@@ -169,8 +181,11 @@
           return {
             firstname: !!this.newPerson.firstname.trim(),
             lastname: !!this.newPerson.lastname.trim(),
+            dobrequired: !!this.newPerson.dob.trim(),
             dob: new Date(this.newPerson.dob) < Date.now() - 86400000,    // 8.64e+7 milliseconds = 1 day
-            zipcode: zipcodeRE.test(this.newPerson.zipcode)
+            ziprequired: !!this.newPerson.zipcode.trim(),
+            zipregex: zipcodeRE.test(this.newPerson.zipcode),
+            population: this.persons.length < populationLimit
           }
         },
         isValid: function () {
