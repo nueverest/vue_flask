@@ -18,45 +18,46 @@
 <body>
   <div id="app">
     <div class="row">
-      <div class="small-6 column">Left</div>
-      <div class="small-6 column">Right</div>
-    </div>
+      <div class="small-12 columns">
+        <h3 class="text-align-center margin-20-0-50-0">Person Creation Machine</h3>
+      </div>
 
-    <div class="row">
-      <div class="small-12 large-6 columns">
-        <h1>Create Person</h1>
+      <div class="small-12 large-6 columns bgc-h76b852">
+        <div class="row">
+          <div class="small-11 medium-10 columns small-centered">
+            <form id="form" class="form input-underline" v-on:submit.prevent="addPerson">
+              <div class="row">
+                <label>
+                  First Name
+                  <input type="text" v-model="newPerson.firstname" placeholder="First Name">
+                </label>
+                <div class="inline-block darkred" v-show="!validation.firstname">* Required</div>
+              </div>
 
-        <form id="form" class="input-underline" v-on:submit.prevent="addPerson">
-          <div class="row">
-            <label>
-              First Name
-              <input type="text" v-model="newPerson.firstname" placeholder="First Name">
-            </label>
-            <div class="inline-block darkred" v-show="!validation.firstname">* Required</div>
-          </div>
+              <div class="row">
+                <div class="inline-block width-10p">Last Name</div>
+                <div class="inline-block"><input type="text" v-model="newPerson.lastname" placeholder="Last Name"></div>
+                <div class="inline-block darkred" v-show="!validation.lastname">* Required</div>
+              </div>
 
-          <div class="row">
-            <div class="inline-block width-10p">Last Name</div>
-            <div class="inline-block"><input type="text" v-model="newPerson.lastname" placeholder="Last Name"></div>
-            <div class="inline-block darkred" v-show="!validation.lastname">* Required</div>
-          </div>
+              <div class="row">
+                <label for="dob">Date of Birth</label>
+                <input id="dob" type="date" v-model="newPerson.dob" placeholder="Date of Birth">
+                <div class="inline-block darkred" v-show="!validation.dob">Date of birth must exist in the past.</div>
+              </div>
+              <div class="row">
+                <div class="inline-block width-10p">US Zip Code</div>
+                <div class="inline-block"><input type="text" v-model="newPerson.zipcode" placeholder="US Zip Code"></div>
+                <div class="inline-block darkred" v-show="!validation.zipcode">Valid formats 55555, 55555-4444, or 55555 4444.</div>
+              </div>
 
-          <div class="row">
-            <label for="dob">Date of Birth</label>
-            <input id="dob" type="date" v-model="newPerson.dob" placeholder="Date of Birth">
-            <div class="inline-block darkred" v-show="!validation.dob">Date of birth must exist in the past.</div>
+              <div class="row padding-top-20">
+                <div class="inline-block width-10p"></div>
+                <div class="inline-block"><input v-bind:disabled="!isValid" type="submit" value="Create Person"></div>
+              </div>
+            </form>
           </div>
-          <div class="row">
-            <div class="inline-block width-10p">US Zip Code</div>
-            <div class="inline-block"><input type="text" v-model="newPerson.zipcode" placeholder="US Zip Code"></div>
-            <div class="inline-block darkred" v-show="!validation.zipcode">Valid formats 55555, 55555-4444, or 55555 4444.</div>
-          </div>
-
-          <div class="row padding-top-20">
-            <div class="inline-block width-10p"></div>
-            <div class="inline-block"><input v-bind:disabled="!isValid" type="submit" value="Create Person"></div>
-          </div>
-        </form>
+        </div>
       </div>
 
       <div class="small-12 large-6 columns">

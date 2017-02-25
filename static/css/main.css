@@ -1,21 +1,34 @@
 /* Reference: http://callmenick.com/post/various-css-input-text-styles */
 
-/* Normalize */
+/* Form */
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  /*max-width: 360px;*/
+  margin: 33px 0px;
+  /*margin: 0 auto 100px;*/
+  padding: 25px 45px 45px 45px;
+  /*text-align: center;*/
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+/* Normalize Input Box */
 input[type="text"] {
-  display: block;
+  /*display: block;*/
   margin: 0;
-  /*width: 100%;*/
+  /*width: 50%;*/
   font-family: sans-serif;
   font-size: 18px;
   appearance: none;
   box-shadow: none;
-  border-radius: none;
+  border-radius: unset;
 }
 input[type="text"]:focus {
   outline: none;
 }
 
-/* Underline */
+/* Underline Input Box */
 .input-underline input[type="text"] {
   padding: 10px;
   border: none;

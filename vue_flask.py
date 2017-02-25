@@ -42,7 +42,7 @@ def index():
     return render_template(
         'index.html',
         favicon=favicon,
-        foundantioncss=foundationcss,
+        foundationcss=foundationcss,
         blowdrycss=blowdrycss,
         maincss=maincss,
         jquery=jquery,
