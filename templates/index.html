@@ -61,13 +61,13 @@
                 </div>
               </div>
 
-              <div class="row margin-top-45 text-align-center">
+              <div class="row margin-top-35 text-align-center">
                 <div class="small-12 columns">
-                  <button class="button font-size-20" v-bind:disabled="!isValid" type="submit" name="submit">
+                  <button class="button font-size-20-s padding-16-s-i" v-bind:disabled="!isValid" type="submit" name="submit">
                     <i class="material-icons">&#xE87C;</i>
                     <span>Create Person</span>
                   </button>
-                  <div class="darkred margin-top-10" v-show="!validation.population">Population Limit Reached (25 max)</div>
+                  <div class="darkred" v-show="!validation.population">Population Limit (25 max)</div>
                 </div>
               </div>
             </form>
@@ -80,7 +80,7 @@
         <h6 class="text-align-center white margin-top-10"><i class="material-icons">&#xE7FB;</i> Total Population: {{ persons.length }}</h6>
       </div>
     </div>
-
+`
     <!--<div class="row">-->
       <!--<div class="small-12 columns">-->
         <!--&lt;!&ndash;<p>uid: {{ user.uid }}</p>&ndash;&gt;-->
