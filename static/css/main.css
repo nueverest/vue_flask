@@ -1,0 +1,28 @@
+/* Reference: http://callmenick.com/post/various-css-input-text-styles */
+
+/* Normalize */
+input[type="text"] {
+  display: block;
+  margin: 0;
+  /*width: 100%;*/
+  font-family: sans-serif;
+  font-size: 18px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+}
+input[type="text"]:focus {
+  outline: none;
+}
+
+/* Underline */
+.input-underline input[type="text"] {
+  padding: 10px;
+  border: none;
+  border-bottom: solid 2px #c9c9c9;
+  transition: border 0.3s;
+}
+.input-underline input[type="text"]:focus,
+.input-underline input[type="text"].focus {
+  border-bottom: solid 2px #969696;
+}

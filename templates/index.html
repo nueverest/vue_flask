@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Entry Form</title>
 
   <link rel="shortcut icon" href="{[ favicon ]}">
+  <link rel="stylesheet" type="text/css" href="{[ foundationcss ]}">
   <link rel="stylesheet" type="text/css" href="{[ blowdrycss ]}">
+  <link rel="stylesheet" type="text/css" href="{[ maincss ]}">
 
   <script src="https://unpkg.com/vue@2.0.7/dist/vue.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
@@ -13,46 +17,67 @@
 </head>
 <body>
   <div id="app">
-    <h1>Persons</h1>
+    <div class="row">
+      <div class="small-6 column">Left</div>
+      <div class="small-6 column">Right</div>
+    </div>
 
-    <form id="form" v-on:submit.prevent="addPerson">
-      <div class="row">
-        <div class="inline-block width-10p">First Name</div>
-        <div class="inline-block"><input type="text" v-model="newPerson.firstname" placeholder="First Name"></div>
-        <div class="inline-block darkred" v-show="!validation.firstname">First Name cannot be empty.</div>
+    <div class="row">
+      <div class="small-12 large-6 columns">
+        <h1>Create Person</h1>
+
+        <form id="form" class="input-underline" v-on:submit.prevent="addPerson">
+          <div class="row">
+            <label>
+              First Name
+              <input type="text" v-model="newPerson.firstname" placeholder="First Name">
+            </label>
+            <div class="inline-block darkred" v-show="!validation.firstname">* Required</div>
+          </div>
+
+          <div class="row">
+            <div class="inline-block width-10p">Last Name</div>
+            <div class="inline-block"><input type="text" v-model="newPerson.lastname" placeholder="Last Name"></div>
+            <div class="inline-block darkred" v-show="!validation.lastname">* Required</div>
+          </div>
+
+          <div class="row">
+            <label for="dob">Date of Birth</label>
+            <input id="dob" type="date" v-model="newPerson.dob" placeholder="Date of Birth">
+            <div class="inline-block darkred" v-show="!validation.dob">Date of birth must exist in the past.</div>
+          </div>
+          <div class="row">
+            <div class="inline-block width-10p">US Zip Code</div>
+            <div class="inline-block"><input type="text" v-model="newPerson.zipcode" placeholder="US Zip Code"></div>
+            <div class="inline-block darkred" v-show="!validation.zipcode">Valid formats 55555, 55555-4444, or 55555 4444.</div>
+          </div>
+
+          <div class="row padding-top-20">
+            <div class="inline-block width-10p"></div>
+            <div class="inline-block"><input v-bind:disabled="!isValid" type="submit" value="Create Person"></div>
+          </div>
+        </form>
       </div>
 
-      <div class="row">
-        <div class="inline-block width-10p">Last Name</div>
-        <div class="inline-block"><input type="text" v-model="newPerson.lastname" placeholder="Last Name"></div>
-        <div class="inline-block darkred" v-show="!validation.lastname">Last Name cannot be empty.</div>
+      <div class="small-12 large-6 columns">
+        Graphical Interface goes here.
       </div>
+    </div>
 
-      <div class="row">
-        <div class="inline-block width-10p">Date of Birth</div>
-        <div class="inline-block"><input type="date" v-model="newPerson.dob" placeholder="Date of Birth"></div>
-        <div class="inline-block darkred" v-show="!validation.dob">Date of birth must exist in the past.</div>
+    <div class="row">
+      <div class="column">
+        <!--<p>uid: {{ user.uid }}</p>-->
+        <!--<p>person path: /persons/{{ user.uid }}</p>-->
+        <!--<p>number of persons: {{ persons.length }}</p>-->
+        <!--<button v-if="user.uid" v-on:click="addPerson">Add Person</button>-->
+        <ul class="margin-top-50">
+          <li v-for="person in persons"><button v-on:click="removePerson(person)">Remove</button> {{ person }}</li>
+        </ul>
       </div>
-      <div class="row">
-        <div class="inline-block width-10p">US Zip Code</div>
-        <div class="inline-block"><input type="text" v-model="newPerson.zipcode" placeholder="US Zip Code"></div>
-        <div class="inline-block darkred" v-show="!validation.zipcode">US Zip Code format 55555, 55555-4444, or 55555 4444.</div>
-      </div>
-
-      <div class="row padding-top-20">
-        <div class="inline-block width-10p"></div>
-        <div class="inline-block"><input v-bind:disabled="!isValid" type="submit" value="Add Person"></div>
-      </div>
-    </form>
-
-    <!--<p>uid: {{ user.uid }}</p>-->
-    <!--<p>person path: /persons/{{ user.uid }}</p>-->
-    <!--<p>number of persons: {{ persons.length }}</p>-->
-    <!--<button v-if="user.uid" v-on:click="addPerson">Add Person</button>-->
-    <ul class="margin-top-50">
-      <li v-for="person in persons"><button v-on:click="removePerson(person)">remove</button> {{ person }}</li>
-    </ul>
+    </div>
   </div>
+
+
   <script>
     // Initialize Firebase
     firebase.database.enableLogging(false);  // toggle on for debug (it's noisy)
@@ -130,5 +155,15 @@
       }
     })
   </script>
+
+  <script src="{[ jquery ]}"></script>
+  <script src="{[ whatinput ]}"></script>
+  <script src="{[ foundationjs ]}"></script>
+
+  <script>
+      $(document).ready(function() {
+        $(document).foundation()
+      })
+    </script>
 </body>
 </html>

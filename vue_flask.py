@@ -4,6 +4,7 @@ from flask import url_for as local_url_for
 from flask_s3 import FlaskS3
 from flask_s3 import url_for as s3_url_for
 
+
 class CustomFlask(Flask):
     """
     Override Jinja2 default delimiters.  {{ }} --> {[ ]}
@@ -32,13 +33,21 @@ s3 = FlaskS3(app)
 @app.route('/')
 def index():
     favicon = select_url_for('static', filename='favicon.ico')
+    foundationcss = select_url_for('static', filename='css/foundation.min.css')
     blowdrycss = select_url_for('static', filename='css/blowdry.min.css')
-    # foundation_css = select_url_for('static', filename='css/foundation.min.css')
-    # foundation_js = select_url_for('static', filename='js/foundation.min.js')
+    maincss = select_url_for('static', filename='css/main.css')
+    jquery = select_url_for('static', filename='js/vendor/jquery.js')
+    whatinput = select_url_for('static', filename='js/vendor/what-input.js')
+    foundationjs = select_url_for('static', filename='js/vendor/foundation.min.js')
     return render_template(
         'index.html',
         favicon=favicon,
+        foundantioncss=foundationcss,
         blowdrycss=blowdrycss,
+        maincss=maincss,
+        jquery=jquery,
+        whatinput=whatinput,
+        foundationjs=foundationjs
     )
 
 
