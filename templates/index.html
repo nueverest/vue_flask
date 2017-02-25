@@ -19,12 +19,13 @@
   <div id="app">
     <div class="row">
       <div class="small-12 columns">
-        <h3 class="text-align-center margin-20-0-50-0">Person Creation Machine</h3>
+        <h2 class="text-align-center margin-20-0-50-0">Person Creation Machine</h2>
       </div>
 
-      <div class="small-12 medium-6 large-5 columns bgc-h76b852">
+      <div class="small-12 medium-6 large-4 columns bgc-h76b852 same-height">
+        <h3 class="text-align-center white margin-top-20">Create a Person</h3>
         <div class="row">
-          <div class="small-11 large-10 columns small-centered">
+          <div class="small-11 columns small-centered">
             <form id="form" class="form input-underline" v-on:submit.prevent="addPerson">
               <div class="row">
                 <div class="small-12 columns">
@@ -42,7 +43,7 @@
 
               <div class="row margin-top-15">
                 <div class="small-12 columns">
-                  Date of Birth <span class="darkred float-right" v-show="!validation.dob">Past date only</span>
+                  Date of Birth <span class="darkred float-right" v-show="!validation.dob">Past date <span class="display-large-up">only</span></span>
                   <input type="date" v-model="newPerson.dob" placeholder="Date of Birth">
                 </div>
               </div>
@@ -53,7 +54,7 @@
                 </div>
               </div>
 
-              <div class="row margin-top-25 text-align-center">
+              <div class="row margin-top-45 text-align-center">
                 <div class="small-12 columns"><input v-bind:disabled="!isValid" type="submit" value="Create Person"></div>
               </div>
             </form>
@@ -61,22 +62,42 @@
         </div>
       </div>
 
-      <div class="small-12 medium-6 large-7 columns">
-        Graphical Interface goes here.
+      <div class="small-12 medium-6 large-8 columns bgc-h5276b8 white same-height">
+        <h3 class="text-align-center white margin-top-20">People Created</h3>
+        <div class="row margin-top-20">
+          <div class="small-11 columns small-centered box-shadow bgc-white black">
+            <div class="row">
+              <div class="small-12 columns">
+                <div class="row bgc-h859fcd white bold">
+                  <div class="small-3 columns">Name</div>
+                  <div class="small-3 columns">Date of Birth</div>
+                  <div class="small-3 columns">US Zip Code</div>
+                  <div class="small-3 columns text-align-center">Remove</div>
+                </div>
+                <div class="row bgc-alternate" v-for="person in persons">
+                  <div class="small-3 columns">{{ person.firstname }} {{ person.lastname }}</div>
+                  <div class="small-3 columns">{{ person.dob }}</div>
+                  <div class="small-3 columns">{{ person.zipcode }}</div>
+                  <div class="small-3 columns text-align-center darkred bold" v-on:click="removePerson(person)">X</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="column">
-        <!--<p>uid: {{ user.uid }}</p>-->
-        <!--<p>person path: /persons/{{ user.uid }}</p>-->
-        <!--<p>number of persons: {{ persons.length }}</p>-->
-        <!--<button v-if="user.uid" v-on:click="addPerson">Add Person</button>-->
-        <ul class="margin-top-50">
-          <li v-for="person in persons"><button v-on:click="removePerson(person)">Remove</button> {{ person }}</li>
-        </ul>
-      </div>
-    </div>
+    <!--<div class="row">-->
+      <!--<div class="small-12 columns">-->
+        <!--&lt;!&ndash;<p>uid: {{ user.uid }}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>person path: /persons/{{ user.uid }}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>number of persons: {{ persons.length }}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<button v-if="user.uid" v-on:click="addPerson">Add Person</button>&ndash;&gt;-->
+        <!--<ul class="margin-top-50">-->
+          <!--<li v-for="person in persons"><button v-on:click="removePerson(person)">Remove</button> {{ person }}</li>-->
+        <!--</ul>-->
+      <!--</div>-->
+    <!--</div>-->
   </div>
 
 
@@ -165,6 +186,13 @@
   <script>
       $(document).ready(function() {
         $(document).foundation()
+
+        // Match div heights
+        var heights = $(".same-height").map(function() {
+            return $(this).height();
+        }).get(),
+        maxHeight = Math.max.apply(null, heights);
+        $(".same-height").height(maxHeight);
       })
     </script>
 </body>
