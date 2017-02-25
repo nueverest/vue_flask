@@ -5,37 +5,39 @@
   position: relative;
   z-index: 1;
   background: #FFFFFF;
-  /*max-width: 360px;*/
-  margin: 33px 0px;
-  /*margin: 0 auto 100px;*/
-  padding: 25px 45px 45px 45px;
-  /*text-align: center;*/
+  margin: 33px 0;
+  padding: 25px 40px 40px 40px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
 /* Normalize Input Box */
-input[type="text"] {
-  /*display: block;*/
-  margin: 0;
-  /*width: 50%;*/
+input[type="text"],
+input[type="date"] {
+  margin: 0.25rem 0 0 0;
   font-family: sans-serif;
+  color: #c9c9c9;
   font-size: 18px;
   appearance: none;
   box-shadow: none;
   border-radius: unset;
 }
-input[type="text"]:focus {
+input[type="text"]:focus,
+input[type="date"]:focus {
   outline: none;
 }
 
 /* Underline Input Box */
-.input-underline input[type="text"] {
+.input-underline input[type="text"],
+.input-underline input[type="date"] {
   padding: 10px;
   border: none;
-  border-bottom: solid 2px #c9c9c9;
+  border-bottom: solid 1px #c9c9c9;
   transition: border 0.3s;
 }
 .input-underline input[type="text"]:focus,
-.input-underline input[type="text"].focus {
-  border-bottom: solid 2px #969696;
+.input-underline input[type="text"].focus,
+.input-underline input[type="date"]:focus,
+.input-underline input[type="date"].focus {
+  border: none;
+  border-bottom: solid 1px #969696;
 }
