@@ -2,7 +2,7 @@
 Responsive AWS Serverless SPA using Vue.js, Flask, Firebase, and more.
 
 # Benefits of Serverless
-Serverless technology does use a server but it only runs 20-60 milliseconds at a time.
+Serverless operations do use a server, but it only runs 20-60 milliseconds at a time.
 - High Performance
 - High Availability
 - High Scalability
