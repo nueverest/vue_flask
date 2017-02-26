@@ -7,6 +7,7 @@ Serverless operations do use a server, but it only runs 20-60 milliseconds at a 
 - High Availability
 - High Scalability
 - No Server and associated infrastructure to understand and maintain.
+- Easy undeployment
 
 # Disadvantage of Serverless
 - Deployment and Update actions require the entire project to be uploaded. Even a tiny change such as adding one 
