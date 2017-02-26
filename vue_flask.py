@@ -51,14 +51,7 @@ def index():
         'foundationjs': select_url_for('static', filename='js/vendor/foundation.min.js'),
     }
 
-    input_id = {
-        'firstname': 'firstname',
-        'lastname': 'lastname',
-        'dob': 'dob',
-        'zipcode': 'zipcode',
-        'submit': 'submit',
-    }
-
+    input_id = get_input_id()
     name_max_length = 100
     zipcode_max_length = 10
 
@@ -69,6 +62,17 @@ def index():
         name_max_length=name_max_length,
         zipcode_max_length=zipcode_max_length,
     )
+
+
+def get_input_id():
+    return {
+        'creationform': 'creationform',
+        'firstname': 'firstname',
+        'lastname': 'lastname',
+        'dob': 'dob',
+        'zipcode': 'zipcode',
+        'submit': 'submit',
+    }
 
 
 def is_production():

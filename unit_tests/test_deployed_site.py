@@ -6,6 +6,8 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+# app
+from vue_flask import get_input_id
 
 class TestDeployedSiteWithRequests(TestCase):
     def setUp(self):
@@ -44,9 +46,13 @@ class TestDeployedSiteWithSelenium(TestCase):
             browser.get(self.site)
             self.assertIn('Person Creation Machine', browser.title)
 
-    # def test_create_a_person_form_valid_data(self):
-    #     pass
-    #
+    def test_create_a_person_form_valid_data(self):
+        input_id = get_input_id()
+
+        for browser in self.browsers:
+
+            form_element =
+
     # def test_create_a_person_form_input_length_exceeded(self):
     #     pass
     #
