@@ -44,6 +44,8 @@ def index():
     jquery = select_url_for('static', filename='js/vendor/jquery.js')
     whatinput = select_url_for('static', filename='js/vendor/what-input.js')
     foundationjs = select_url_for('static', filename='js/vendor/foundation.min.js')
+    nameMaxLength = 100
+    zipcodeMaxLength = 10
 
     return render_template(
         'index.html',
@@ -54,6 +56,8 @@ def index():
         jquery=jquery,
         whatinput=whatinput,
         foundationjs=foundationjs,
+        nameMaxLength=nameMaxLength,
+        zipcodeMaxLength=zipcodeMaxLength,
     )
 
 

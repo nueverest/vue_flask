@@ -32,15 +32,17 @@
             <form id="form" class="form input-underline" v-on:submit.prevent="addPerson">
               <div class="row">
                 <div class="small-12 columns">
-                  First Name <span class="hb85276 float-right" v-show="!validation.firstname">Required</span>
-                  <input type="text" v-model="newPerson.firstname" placeholder="Xithurian" maxlength="40">
+                  First Name
+                  <span class="hb85276 float-right" v-show="!validation.firstname">Required</span>
+                  <span class="hb85276 float-right" v-show="!validation.firstnamelength">Short</span>
+                  <input type="text" v-model="newPerson.firstname" placeholder="Xithurian" maxlength="{[ nameMaxLenght ]}">
                 </div>
               </div>
 
               <div class="row margin-top-15">
                 <div class="small-12 columns">
                   Last Name <span class="hb85276 float-right" v-show="!validation.lastname">Required</span>
-                  <input type="text" v-model="newPerson.lastname" placeholder="Ulon" maxlength="40">
+                  <input type="text" v-model="newPerson.lastname" placeholder="Ulon" maxlength="{[ nameMaxLength ]}">
                 </div>
               </div>
 
@@ -59,7 +61,7 @@
                   US Zip Code
                   <span class="hb85276 float-right" v-show="!validation.ziprequired">Required</span>
                   <span class="hb85276 float-right" v-show="validation.ziprequired && !validation.zipregex">Example: 85812</span>
-                  <input type="text" v-model="newPerson.zipcode" placeholder="55555-4444" maxlength="10">
+                  <input type="text" v-model="newPerson.zipcode" placeholder="55555-4444" maxlength="{[ zipcodeMaxLength ]}">
                 </div>
               </div>
 
@@ -222,11 +224,18 @@
         validation: function() {
           return {
             firstname: !!this.newPerson.firstname.trim(),
+            firstnamelength: this.newPerson.firstname.trim().length <= {[ nameMaxLength ]},
+
             lastname: !!this.newPerson.lastname.trim(),
+            lastnamelength: this.newPerson.lastname.trim().length <= {[ nameMaxLength ]},
+
             dobrequired: !!this.newPerson.dob.trim(),
             dob: new Date(this.newPerson.dob) < Date.now() - 86400000,    // 8.64e+7 milliseconds = 1 day
+
             ziprequired: !!this.newPerson.zipcode.trim(),
+            zipmaxlength: this.newPerson.zipcode.trim().length <= {[ zipcodeMaxLength ]},
             zipregex: zipcodeRE.test(this.newPerson.zipcode),
+
             population: this.persons.length < this.populationLimit
           }
         },
