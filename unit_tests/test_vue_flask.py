@@ -33,15 +33,15 @@ class TestVueFlask(TestCase):
         with self.app.test_request_context():
             self.assertFalse(vue_flask.is_production())
 
-    # def test_select_url_for(self):
-    #     with self.app.test_request_context():
-    #         expected = ['/static/favicon.ico', '/static/js/vendor/foundation.min.js']
-    #         actual = [
-    #             vue_flask.select_url_for('static', filename='favicon.ico'),
-    #             vue_flask.select_url_for('static', filename='js/vendor/foundation.min.js')
-    #         ]
-    #         for e in expected
-    #         self.assertEqual(expected, actual)
+    def test_select_url_for(self):
+        with self.app.test_request_context():
+            expected = ['/static/favicon.ico', '/static/js/vendor/foundation.min.js']
+            actual = [
+                vue_flask.select_url_for('static', filename='favicon.ico'),
+                vue_flask.select_url_for('static', filename='js/vendor/foundation.min.js')
+            ]
+            for index, expected_value in enumerate(expected):
+                self.assertEqual(expected_value, actual[index])
 
 
 if __name__ == '__main__':
