@@ -44,6 +44,15 @@ class TestDeployedSiteWithSelenium(TestCase):
             browser.get(self.site)
             self.assertIn('Person Creation Machine', browser.title)
 
+    # def test_create_a_person_form_valid_data(self):
+    #     pass
+    #
+    # def test_create_a_person_form_future_birth_day(self):
+    #     pass
+    #
+    # def test_create_a_person_form_invalid_zipcodes(self):
+    #     pass
+    #
     # def test_create_a_person_form(self):
     #     pass
     #

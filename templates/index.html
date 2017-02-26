@@ -33,14 +33,14 @@
               <div class="row">
                 <div class="small-12 columns">
                   First Name <span class="hb85276 float-right" v-show="!validation.firstname">Required</span>
-                  <input type="text" v-model="newPerson.firstname" placeholder="Xithurian">
+                  <input type="text" v-model="newPerson.firstname" placeholder="Xithurian" maxlength="40">
                 </div>
               </div>
 
               <div class="row margin-top-15">
                 <div class="small-12 columns">
                   Last Name <span class="hb85276 float-right" v-show="!validation.lastname">Required</span>
-                  <input type="text" v-model="newPerson.lastname" placeholder="Ulon">
+                  <input type="text" v-model="newPerson.lastname" placeholder="Ulon" maxlength="40">
                 </div>
               </div>
 
@@ -59,7 +59,7 @@
                   US Zip Code
                   <span class="hb85276 float-right" v-show="!validation.ziprequired">Required</span>
                   <span class="hb85276 float-right" v-show="validation.ziprequired && !validation.zipregex">Example: 85812</span>
-                  <input type="text" v-model="newPerson.zipcode" placeholder="55555-4444">
+                  <input type="text" v-model="newPerson.zipcode" placeholder="55555-4444" maxlength="10">
                 </div>
               </div>
 
