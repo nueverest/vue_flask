@@ -34,15 +34,16 @@
                 <div class="small-12 columns">
                   First Name
                   <span class="hb85276 float-right" v-show="!validation.firstname">Required</span>
-                  <span class="hb85276 float-right" v-show="!validation.firstnamelength">Short</span>
-                  <input type="text" v-model="newPerson.firstname" placeholder="Xithurian" maxlength="{[ nameMaxLenght ]}">
+                  <span class="hb85276 float-right" v-show="validation.firstname && !validation.firstnamelength">Max Len {[ nameMaxLength ]}</span>
+                  <input type="text" v-model="newPerson.firstname" placeholder="Xithurian" maxlength="{[ nameMaxLength + 1 ]}">
                 </div>
               </div>
 
               <div class="row margin-top-15">
                 <div class="small-12 columns">
                   Last Name <span class="hb85276 float-right" v-show="!validation.lastname">Required</span>
-                  <input type="text" v-model="newPerson.lastname" placeholder="Ulon" maxlength="{[ nameMaxLength ]}">
+                  <span class="hb85276 float-right" v-show="validation.lastname && !validation.lastnamelength">Max Len {[ nameMaxLength ]}</span>
+                  <input type="text" v-model="newPerson.lastname" placeholder="Ulon" maxlength="{[ nameMaxLength + 1 ]}">
                 </div>
               </div>
 
@@ -60,8 +61,9 @@
                 <div class="small-12 columns">
                   US Zip Code
                   <span class="hb85276 float-right" v-show="!validation.ziprequired">Required</span>
-                  <span class="hb85276 float-right" v-show="validation.ziprequired && !validation.zipregex">Example: 85812</span>
-                  <input type="text" v-model="newPerson.zipcode" placeholder="55555-4444" maxlength="{[ zipcodeMaxLength ]}">
+                  <span class="hb85276 float-right" v-show="validation.ziprequired && !validation.ziplength">Max Len {[ zipcodeMaxLength ]}</span>
+                  <span class="hb85276 float-right" v-show="validation.ziprequired && validation.ziplength && !validation.zipregex">Ex<span class="display-large-up">ample</span>: 85812</span>
+                  <input type="text" v-model="newPerson.zipcode" placeholder="55555-4444" maxlength="{[ zipcodeMaxLength + 1 ]}">
                 </div>
               </div>
 
@@ -233,7 +235,7 @@
             dob: new Date(this.newPerson.dob) < Date.now() - 86400000,    // 8.64e+7 milliseconds = 1 day
 
             ziprequired: !!this.newPerson.zipcode.trim(),
-            zipmaxlength: this.newPerson.zipcode.trim().length <= {[ zipcodeMaxLength ]},
+            ziplength: this.newPerson.zipcode.trim().length <= {[ zipcodeMaxLength ]},
             zipregex: zipcodeRE.test(this.newPerson.zipcode),
 
             population: this.persons.length < this.populationLimit
