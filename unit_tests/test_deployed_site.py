@@ -44,6 +44,26 @@ class TestDeployedSiteWithSelenium(TestCase):
             browser.get(self.site)
             self.assertIn('Person Creation Machine', browser.title)
 
+    # def test_create_a_person_form(self):
+    #     pass
+    #
+    # def test_create_a_person_button_disabled(self):
+    #     pass
+    #
+    # def test_remove_person_top_table(self):
+    #     pass
+    #
+    # def test_remove_person_bottom_table(self):
+    #     pass
+    #
+    # def test_population_limit(self):
+    #     pass
+    #
+    # def test_population_changed(self):
+    #     pass
+
+
+
 
 if __name__ == '__main__':
     main()
