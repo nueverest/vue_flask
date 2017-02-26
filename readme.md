@@ -52,3 +52,9 @@ event.
 
 # How to Undeploy
 - `zappa undeploy production`
+
+# Testing with Flask-Testing, Selenium, Google chromedriver, Mozilla geckodriver
+- Google chromedriver https://sites.google.com/a/chromium.org/chromedriver/downloads
+- Mozilla geckodriver https://github.com/mozilla/geckodriver/releases
+- Microsoft edge webdriver https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/
+- Mac Safari webdriver https://webkit.org/blog/6900/webdriver-support-in-safari-10/

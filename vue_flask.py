@@ -23,10 +23,10 @@ class CustomFlask(Flask):
 
 def create_app():
     app = CustomFlask(__name__)
-    app.config['DEBUG'] = not is_production()
+    app.config['DEBUG'] = True
     app.config['FLASKS3_BUCKET_NAME'] = 'nueverest'
     app.config['FLASKS3_USE_HTTPS'] = True
-    app.config['USE_S3_DEBUG'] = not is_production()
+    app.config['USE_S3_DEBUG'] = True
     return app
 
 
@@ -67,7 +67,8 @@ def is_production():
     """
     root_url = request.url_root
     developer_url = 'http://127.0.0.1:5000/'
-    return root_url != developer_url
+    secure = request.is_secure
+    return root_url != developer_url and secure
 
 
 def select_url_for(endpoint, filename):
