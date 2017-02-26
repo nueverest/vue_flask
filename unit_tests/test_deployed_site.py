@@ -50,8 +50,8 @@ class TestDeployedSiteWithSelenium(TestCase):
         input_id = get_input_id()
 
         for browser in self.browsers:
+            form_element = input_id['creationform']
 
-            form_element =
 
     # def test_create_a_person_form_input_length_exceeded(self):
     #     pass
