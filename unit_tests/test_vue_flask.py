@@ -10,7 +10,7 @@ import flask
 import vue_flask
 
 
-# Basic Functionality Test
+# Localhost Functionality Test
 class TestVueFlask(TestCase):
     def setUp(self):
         vue_flask.app.config['TESTING'] = True
