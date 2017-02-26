@@ -35,7 +35,7 @@
                   First Name
                   <span class="hb85276 float-right" v-show="!validation.firstname">Required</span>
                   <span class="hb85276 float-right" v-show="validation.firstname && !validation.firstnamelength">Max Len {[ nameMaxLength ]}</span>
-                  <input type="text" v-model="newPerson.firstname" placeholder="Xithurian" maxlength="{[ nameMaxLength + 1 ]}">
+                  <input type="text" v-model="newPerson.firstname" placeholder="Xithurian" maxlength="{[ nameMaxLength ]}">
                 </div>
               </div>
 
@@ -43,7 +43,7 @@
                 <div class="small-12 columns">
                   Last Name <span class="hb85276 float-right" v-show="!validation.lastname">Required</span>
                   <span class="hb85276 float-right" v-show="validation.lastname && !validation.lastnamelength">Max Len {[ nameMaxLength ]}</span>
-                  <input type="text" v-model="newPerson.lastname" placeholder="Ulon" maxlength="{[ nameMaxLength + 1 ]}">
+                  <input type="text" v-model="newPerson.lastname" placeholder="Ulon" maxlength="{[ nameMaxLength ]}">
                 </div>
               </div>
 
@@ -63,7 +63,7 @@
                   <span class="hb85276 float-right" v-show="!validation.ziprequired">Required</span>
                   <span class="hb85276 float-right" v-show="validation.ziprequired && !validation.ziplength">Max Len {[ zipcodeMaxLength ]}</span>
                   <span class="hb85276 float-right" v-show="validation.ziprequired && validation.ziplength && !validation.zipregex">Ex<span class="display-large-up">ample</span>: 85812</span>
-                  <input type="text" v-model="newPerson.zipcode" placeholder="55555-4444" maxlength="{[ zipcodeMaxLength + 1 ]}">
+                  <input type="text" v-model="newPerson.zipcode" placeholder="55555-4444" maxlength="{[ zipcodeMaxLength ]}">
                 </div>
               </div>
 
