@@ -21,12 +21,17 @@ class CustomFlask(Flask):
     ))
 
 
-app = CustomFlask(__name__)
-app.config['DEBUG'] = True
-app.config['FLASKS3_BUCKET_NAME'] = 'nueverest'
-app.config['FLASKS3_USE_HTTPS'] = True
-app.config['USE_S3_DEBUG'] = True
+def create_app():
+    app = CustomFlask(__name__)
+    app.config['DEBUG'] = not is_production()
+    app.config['FLASKS3_BUCKET_NAME'] = 'nueverest'
+    app.config['FLASKS3_USE_HTTPS'] = True
+    app.config['USE_S3_DEBUG'] = not is_production()
+    return app
 
+
+# Initialize App
+app = create_app()
 s3 = FlaskS3(app)
 
 
