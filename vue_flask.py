@@ -44,8 +44,17 @@ def index():
     jquery = select_url_for('static', filename='js/vendor/jquery.js')
     whatinput = select_url_for('static', filename='js/vendor/what-input.js')
     foundationjs = select_url_for('static', filename='js/vendor/foundation.min.js')
-    nameMaxLength = 100
-    zipcodeMaxLength = 10
+
+    name_max_length = 100
+    zipcode_max_length = 10
+
+    input_id = {
+        'firstname': 'firstname',
+        'lastname': 'lastname',
+        'dob': 'dob',
+        'zipcode': 'zipcode',
+        'submit': 'submit',
+    }
 
     return render_template(
         'index.html',
@@ -56,8 +65,9 @@ def index():
         jquery=jquery,
         whatinput=whatinput,
         foundationjs=foundationjs,
-        nameMaxLength=nameMaxLength,
-        zipcodeMaxLength=zipcodeMaxLength,
+        name_max_length=name_max_length,
+        zipcode_max_length=zipcode_max_length,
+        input_id=input_id,
     )
 
 

@@ -34,16 +34,16 @@
                 <div class="small-12 columns">
                   First Name
                   <span class="hb85276 float-right" v-show="!validation.firstname">Required</span>
-                  <span class="hb85276 float-right" v-show="validation.firstname && !validation.firstnamelength">Max Len {[ nameMaxLength ]}</span>
-                  <input type="text" v-model="newPerson.firstname" placeholder="Xithurian" maxlength="{[ nameMaxLength ]}">
+                  <span class="hb85276 float-right" v-show="validation.firstname && !validation.firstnamelength">Max Len {[ name_max_length ]}</span>
+                  <input id="{[ input_id['firstname'] ]}" type="text" v-model="newPerson.firstname" placeholder="Xithurian" maxlength="{[ name_max_length ]}">
                 </div>
               </div>
 
               <div class="row margin-top-15">
                 <div class="small-12 columns">
                   Last Name <span class="hb85276 float-right" v-show="!validation.lastname">Required</span>
-                  <span class="hb85276 float-right" v-show="validation.lastname && !validation.lastnamelength">Max Len {[ nameMaxLength ]}</span>
-                  <input type="text" v-model="newPerson.lastname" placeholder="Ulon" maxlength="{[ nameMaxLength ]}">
+                  <span class="hb85276 float-right" v-show="validation.lastname && !validation.lastnamelength">Max Len {[ name_max_length ]}</span>
+                  <input id="{[ input_id['lastname'] ]}" type="text" v-model="newPerson.lastname" placeholder="Ulon" maxlength="{[ name_max_length ]}">
                 </div>
               </div>
 
@@ -53,7 +53,7 @@
                   Date of Birth
                   <span class="hb85276 float-right" v-show="!validation.dobrequired">Required</span>
                   <span class="hb85276 float-right" v-show="validation.dobrequired && !validation.dob">Past date <span class="display-large-up">only</span></span>
-                  <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" v-model="newPerson.dob" placeholder="mm/dd/yyyy">
+                  <input id="{[ input_id['dob'] ]}" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" v-model="newPerson.dob" placeholder="mm/dd/yyyy">
                 </div>
               </div>
 
@@ -61,15 +61,15 @@
                 <div class="small-12 columns">
                   US Zip Code
                   <span class="hb85276 float-right" v-show="!validation.ziprequired">Required</span>
-                  <span class="hb85276 float-right" v-show="validation.ziprequired && !validation.ziplength">Max Len {[ zipcodeMaxLength ]}</span>
+                  <span class="hb85276 float-right" v-show="validation.ziprequired && !validation.ziplength">Max Len {[ zipcode_max_length ]}</span>
                   <span class="hb85276 float-right" v-show="validation.ziprequired && validation.ziplength && !validation.zipregex">Ex<span class="display-large-up">ample</span>: 85812</span>
-                  <input type="text" v-model="newPerson.zipcode" placeholder="55555-4444" maxlength="{[ zipcodeMaxLength ]}">
+                  <input id="{[ input_id['zipcode'] ]}" type="text" v-model="newPerson.zipcode" placeholder="55555-4444" maxlength="{[ zipcode_max_length ]}">
                 </div>
               </div>
 
               <div class="row margin-top-35 text-align-center">
                 <div class="small-12 columns">
-                  <button class="button font-size-20-s padding-16-s-i" v-bind:disabled="!isValid" type="submit" name="submit">
+                  <button  id="{[ input_id['submit'] ]}" class="button font-size-20-s padding-16-s-i" v-bind:disabled="!isValid" type="submit" name="submit">
                     <i class="material-icons">&#xE87C;</i>
                     <span>Create Person</span>
                   </button>
@@ -226,16 +226,16 @@
         validation: function() {
           return {
             firstname: !!this.newPerson.firstname.trim(),
-            firstnamelength: this.newPerson.firstname.trim().length <= {[ nameMaxLength ]},
+            firstnamelength: this.newPerson.firstname.trim().length <= {[ name_max_length ]},
 
             lastname: !!this.newPerson.lastname.trim(),
-            lastnamelength: this.newPerson.lastname.trim().length <= {[ nameMaxLength ]},
+            lastnamelength: this.newPerson.lastname.trim().length <= {[ name_max_length ]},
 
             dobrequired: !!this.newPerson.dob.trim(),
             dob: new Date(this.newPerson.dob) < Date.now() - 86400000,    // 8.64e+7 milliseconds = 1 day
 
             ziprequired: !!this.newPerson.zipcode.trim(),
-            ziplength: this.newPerson.zipcode.trim().length <= {[ zipcodeMaxLength ]},
+            ziplength: this.newPerson.zipcode.trim().length <= {[ zipcode_max_length ]},
             zipregex: zipcodeRE.test(this.newPerson.zipcode),
 
             population: this.persons.length < this.populationLimit
