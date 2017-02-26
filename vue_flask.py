@@ -37,16 +37,19 @@ s3 = FlaskS3(app)
 
 @app.route('/')
 def index():
-    favicon = select_url_for('static', filename='favicon.ico')
-    foundationcss = select_url_for('static', filename='css/foundation.min.css')
-    blowdrycss = select_url_for('static', filename='css/blowdry.min.css')
-    maincss = select_url_for('static', filename='css/main.css')
-    jquery = select_url_for('static', filename='js/vendor/jquery.js')
-    whatinput = select_url_for('static', filename='js/vendor/what-input.js')
-    foundationjs = select_url_for('static', filename='js/vendor/foundation.min.js')
-
-    name_max_length = 100
-    zipcode_max_length = 10
+    url_for = {
+        'favicon': select_url_for('static', filename='favicon.ico'),
+        'foundationcss': select_url_for('static', filename='css/foundation.min.css'),
+        'blowdrycss': select_url_for('static', filename='css/blowdry.min.css'),
+        'maincss': select_url_for('static', filename='css/main.css'),
+        'materialicons': 'https://fonts.googleapis.com/icon?family=Material+Icons',
+        'vuejs': 'https://unpkg.com/vue@2.0.7/dist/vue.js',
+        'firebase': 'https://www.gstatic.com/firebasejs/3.6.10/firebase.js',
+        'vuefire': 'https://unpkg.com/vuefire@1.3.0/dist/vuefire.js',
+        'jquery': select_url_for('static', filename='js/vendor/jquery.js'),
+        'whatinput': select_url_for('static', filename='js/vendor/what-input.js'),
+        'foundationjs': select_url_for('static', filename='js/vendor/foundation.min.js'),
+    }
 
     input_id = {
         'firstname': 'firstname',
@@ -56,18 +59,15 @@ def index():
         'submit': 'submit',
     }
 
+    name_max_length = 100
+    zipcode_max_length = 10
+
     return render_template(
         'index.html',
-        favicon=favicon,
-        foundationcss=foundationcss,
-        blowdrycss=blowdrycss,
-        maincss=maincss,
-        jquery=jquery,
-        whatinput=whatinput,
-        foundationjs=foundationjs,
+        url_for=url_for,
+        input_id=input_id,
         name_max_length=name_max_length,
         zipcode_max_length=zipcode_max_length,
-        input_id=input_id,
     )
 
 
