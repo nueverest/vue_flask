@@ -69,7 +69,7 @@
                     <i class="material-icons">&#xE87C;</i>
                     <span>Create Person</span>
                   </button>
-                  <div class="hb85276" v-show="!validation.population">Population Limit (25 max)</div>
+                  <div class="hb85276" v-show="!validation.population">Population Limit ({{ populationLimit }} max)</div>
                 </div>
               </div>
             </form>
@@ -80,7 +80,27 @@
       <div class="small-12 medium-6 large-8 columns bgc-h5276b8 white same-height">
         <h3 class="text-align-center white margin-top-20">People Created</h3>
         <h6 class="text-align-center white margin-top-10"><i class="material-icons">&#xE7FB;</i> Total Population: {{ persons.length }}</h6>
-        <div id="mapid" class="height-480"></div>
+
+        <div class="row padding-top-40">
+          <div class="small-11 large-6 columns small-centered box-shadow bgc-white black">
+            <div class="row">
+              <div class="small-12 columns">
+                <div class="row bgc-h859fcd white bold">
+                  <div class="small-7 columns">Name</div>
+                  <div class="small-3 columns">Age</div>
+                  <div class="small-2 columns text-align-center">&nbsp;</div>
+                </div>
+                <div class="row bgc-alternate" v-for="person in persons">
+                  <div class="small-7 columns">{{ person.firstname }} {{ person.lastname }}</div>
+                  <div class="small-3 columns">{{ person.age }}</div>
+                  <div class="small-2 columns text-align-center hb85276" v-on:click="removePerson(person)">
+                    <i class="material-icons font-size-18-i cursor-pointer">&#xE92B;</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -127,7 +147,6 @@
 
     // Member variables
     var zipcodeRE = /^([0-9]{5})(?:[-\s]*([0-9]{4}))?$/;        // reference: http://stackoverflow.com/a/160880/1783439
-    var populationLimit = 25;
 
     new Vue({
       el: '#app',
@@ -138,8 +157,7 @@
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             this.user = user;
-            this.$bindAsArray('persons', db.ref('persons'));
-//            this.$bindAsArray('persons', db.ref('persons/' + user.uid));  // https://github.com/vuejs/vuefire/blob/master/src/vuefire.js#L169
+            this.$bindAsArray('persons', db.ref('persons'));              // https://github.com/vuejs/vuefire/blob/master/src/vuefire.js#L169
           }
           else {
             firebase.auth().signInAnonymously().catch(console.error);     // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signInAnonymously
@@ -148,6 +166,7 @@
       },
       // Initialize reactive props, bind later when user is available
       data: {
+        populationLimit: 18,
         user: {},
         persons: [],
         newPerson: {
@@ -192,7 +211,7 @@
             dob: new Date(this.newPerson.dob) < Date.now() - 86400000,    // 8.64e+7 milliseconds = 1 day
             ziprequired: !!this.newPerson.zipcode.trim(),
             zipregex: zipcodeRE.test(this.newPerson.zipcode),
-            population: this.persons.length < populationLimit
+            population: this.persons.length < this.populationLimit
           }
         },
         isValid: function () {
@@ -211,7 +230,7 @@
 
   <script>
       $(document).ready(function() {
-        $(document).foundation()
+        $(document).foundation();
 
         // Match div heights
         var heights = $(".same-height").map(function() {

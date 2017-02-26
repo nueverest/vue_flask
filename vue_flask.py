@@ -39,6 +39,7 @@ def index():
     jquery = select_url_for('static', filename='js/vendor/jquery.js')
     whatinput = select_url_for('static', filename='js/vendor/what-input.js')
     foundationjs = select_url_for('static', filename='js/vendor/foundation.min.js')
+
     return render_template(
         'index.html',
         favicon=favicon,
@@ -47,7 +48,7 @@ def index():
         maincss=maincss,
         jquery=jquery,
         whatinput=whatinput,
-        foundationjs=foundationjs
+        foundationjs=foundationjs,
     )
 
 
