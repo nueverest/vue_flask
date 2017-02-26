@@ -58,4 +58,5 @@ event.
 - Google chromedriver https://sites.google.com/a/chromium.org/chromedriver/downloads
 - Mozilla geckodriver https://github.com/mozilla/geckodriver/releases
 - Microsoft edge webdriver https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/
+- Microsoft Internet Explorer http://selenium-release.storage.googleapis.com/index.html
 - Mac Safari webdriver https://webkit.org/blog/6900/webdriver-support-in-safari-10/
