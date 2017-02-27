@@ -8,14 +8,7 @@
 
   <link rel="shortcut icon" href="{[ url_for['favicon'] ]}">
 
-  {% if not is_production %}
-    <link rel="stylesheet" type="text/css" href="{[ url_for['foundationcss'] ]}">
-    <link rel="stylesheet" type="text/css" href="{[ url_for['blowdrycss'] ]}">
-    <link rel="stylesheet" type="text/css" href="{[ url_for['maincss'] ]}">
-  {% else %}
-    <link rel="stylesheet" type="text/css" href="{[ url_for['combinedcss'] ]}">
-  {% endif %}
-
+  <link rel="stylesheet" type="text/css" href="{[ url_for['combinedcss'] ]}">
   <link rel="stylesheet" type="text/css" href="{[ url_for['materialicons'] ]}">
 
   <script src="{[ url_for['vuejs'] ]}"></script>

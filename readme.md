@@ -39,6 +39,13 @@ semi-colon to a file requires the full project to be uploaded.  Projects take mi
 # Change Flask-S3 Config in vue_flask.py
 - app.config['FLASKS3_BUCKET_NAME'] = 'your_s3_bucket_name_here'
 
+# Setup Sass and SCSS Transpiler
+- Download and Install Ruby http://www.ruby-lang.org/en/downloads/
+- Setup system path for Ruby
+- At command prompt enter `gem install sass` to install sass.
+- If you are using an IDE like PyCharm you can setup a File Watcher https://www.jetbrains.com/help/pycharm/2016.3/transpiling-sass-less-and-scss-to-css.html#intro
+- Configuring File Watcher output path http://stackoverflow.com/a/36038914/1783439
+
 # How to Deploy using Zappa - Serverless.
 - Create and Activate a virtual environment for this project. Reference: https://virtualenv.pypa.io/en/stable/installation/
 - `pip install requirements.txt`

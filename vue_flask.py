@@ -56,9 +56,6 @@ s3 = FlaskS3(app)
 def index():
     url_for = {
         'favicon': select_url_for('static', filename='favicon.ico'),
-        'foundationcss': select_url_for('static', filename='css/foundation.min.css'),
-        'blowdrycss': select_url_for('static', filename='css/blowdry.min.css'),
-        'maincss': select_url_for('static', filename='css/main.css'),
         'combinedcss': select_url_for('static', filename='css/combined.css'),
         'materialicons': 'https://fonts.googleapis.com/icon?family=Material+Icons',
         'vuejs': 'https://unpkg.com/vue@2.0.7/dist/vue.js',

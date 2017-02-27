@@ -21,7 +21,6 @@ jmespath==0.9.1
 kappa==0.7.0
 lambda-packages==0.14.2
 MarkupSafe==0.23
-minify==0.1.4
 packaging==16.8
 pathtools==0.1.2
 placebo==0.8.1

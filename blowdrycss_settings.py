@@ -102,7 +102,7 @@ __project__ = 'blowdrycss'
 cwd = getcwd()
 markdown_directory = path.join(cwd, 'docs', 'markdown')
 project_directory = path.join(cwd, 'templates')
-css_directory = path.join(cwd, 'static', 'css')
+css_directory = path.join(cwd, 'static', 'scss')
 docs_directory = path.join(cwd, 'docs')
 
 # Logging
@@ -133,7 +133,7 @@ markdown_docs = False           # Generate a markdown files that provides a quic
 html_docs = False               # Generate a html file that provides a quick syntax and clashing alias reference.
 rst_docs = False                # Generate a sphinx rst file that provides a quick syntax and clashing alias reference.
 human_readable = True           # Generate a standard human readable css file.
-minify = True                   # Generate a minified version of the css file.
+minify = False                  # Generate a minified version of the css file.
 media_queries_enabled = True    # Generate breakpoint and scaling media queries.
 
 # ...Not Implemented Yet...
