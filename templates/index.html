@@ -161,6 +161,13 @@
     </div>
   </div>
 
+{% if not is_production %}
+  <script src="{[ url_for['jquery'] ]}"></script>
+  <script src="{[ url_for['whatinput'] ]}"></script>
+  <script src="{[ url_for['foundationjs'] ]}"></script>
+{% else %}
+  <script src="{[ url_for['combinedjs'] ]}"></script>
+{% endif %}
 
   <script>
     // Initialize Firebase
@@ -259,27 +266,17 @@
     })
   </script>
 
-  {% if not is_production %}
-    <script src="{[ url_for['jquery'] ]}"></script>
-    <script src="{[ url_for['whatinput'] ]}"></script>
-    <script src="{[ url_for['foundationjs'] ]}"></script>
-  {% else %}
-    <script src="{[ url_for['combinedjs'] ]}"></script>
-  {% endif %}
-
-
-
   <script>
-      $(document).ready(function() {
-        $(document).foundation();
+    $(document).ready(function() {
+      $(document).foundation();
 
-        // Match div heights
-        var heights = $(".same-height").map(function() {
-            return $(this).height();
-        }).get(),
-        maxHeight = Math.max.apply(null, heights);
-        $(".same-height").height(maxHeight);
-      })
-    </script>
+      // Match div heights
+      var heights = $(".same-height").map(function() {
+          return $(this).height();
+      }).get(),
+      maxHeight = Math.max.apply(null, heights);
+      $(".same-height").height(maxHeight);
+    })
+  </script>
 </body>
 </html>
