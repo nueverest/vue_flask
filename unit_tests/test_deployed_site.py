@@ -81,7 +81,7 @@ class TestDeployedSiteWithSelenium(TestCase):
 
     def test_create_a_person_form_valid_data(self):
         element_ids = [self.firstname, self.lastname, self.dob, self.zipcode, ]
-        valid_input = ['Xython', 'Ber', '9/9/1999', '85000', ]
+        valid_input = ['Xython', 'Ber', '1999-09-09', '85000', ]
 
         for browser in self.browsers:
             browser.get(self.site)
