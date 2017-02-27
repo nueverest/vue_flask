@@ -69,11 +69,11 @@
 
               <div class="row margin-top-35 text-align-center">
                 <div class="small-12 columns">
-                  <button  id="{[ input_id['submit'] ]}" class="button font-size-20-s padding-16-s-i" v-bind:disabled="!isValid" type="submit" name="submit">
+                  <button id="{[ input_id['submit'] ]}" class="button font-size-20-s padding-16-s-i" v-bind:disabled="!isValid" type="submit" name="submit">
                     <i class="material-icons">&#xE87C;</i>
                     <span>Create Person</span>
                   </button>
-                  <div class="hb85276" v-show="!validation.population">Population Limit ({{ populationLimit }} max)</div>
+                  <div class="hb85276" v-show="!validation.population">Population Limit ({[ population_limit ]} max)</div>
                 </div>
               </div>
             </form>
@@ -83,7 +83,7 @@
 
       <div class="small-12 medium-6 large-8 columns bgc-h5276b8 white same-height">
         <h3 class="text-align-center white margin-top-20">People Created</h3>
-        <h6 class="text-align-center white margin-top-10"><i class="material-icons">&#xE7FB;</i> Total Population: {{ persons.length }}</h6>
+        <h6 class="text-align-center white margin-top-10"><i class="material-icons">&#xE7FB;</i> Total Population: <span id="{[ input_id['population'] ]}">{{ persons.length }}</span></h6>
 
         <div class="row padding-top-20">
           <div class="small-11 medium-10 large-6 columns small-centered box-shadow bgc-white black border-radius-3">
@@ -186,7 +186,6 @@
       },
       // Initialize reactive props, bind later when user is available
       data: {
-        populationLimit: 18,
         user: {},
         persons: [],
         newPerson: {
@@ -238,7 +237,7 @@
             ziplength: this.newPerson.zipcode.trim().length <= {[ zipcode_max_length ]},
             zipregex: zipcodeRE.test(this.newPerson.zipcode),
 
-            population: this.persons.length < this.populationLimit
+            population: this.persons.length < {[ population_limit ]}
           }
         },
         isValid: function () {

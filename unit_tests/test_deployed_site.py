@@ -6,6 +6,9 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+# application
+from vue_flask import get_input_id,
+
 
 class TestDeployedSiteWithRequests(TestCase):
     def setUp(self):
@@ -32,6 +35,14 @@ class TestDeployedSiteWithSelenium(TestCase):
             webdriver.Firefox(),
             # webdriver.Ie()
         ]
+        self.input_id = get_input_id()
+        self.creationform = self.input_id['creationform']
+        self.firstname = self.input_id['firstname']
+        self.lastname = self.input_id['lastname']
+        self.dob = self.input_id['dob']
+        self.zipcode = self.input_id['zipcode']
+        self.submit = self.input_id['submit']
+        self.population = self.input_id['population']
 
         for browser in self.browsers:
             self.addCleanup(browser.quit)
@@ -47,11 +58,13 @@ class TestDeployedSiteWithSelenium(TestCase):
     def test_population_exists(self):
         for browser in self.browsers:
             browser.get(self.site)
+            population_element = browser.find_element_by_id(self.population)
+            population = int(population_element.text)
+            self.assertTrue(0 <= population <= )
 
     def test_create_a_person_form_valid_data(self):
-        form_id = 'creationform'
-        element_ids = ['firstname', 'lastname', 'dob', 'zipcode']
-        valid_input = ['Xython', 'Ber', '1999-09-09', '85000']
+        element_ids = [self.firstname, self.lastname, self.dob, self.zipcode, ]
+        valid_input = ['Xython', 'Ber', '1999-09-09', '85000', ]
 
         for browser in self.browsers:
             browser.get(self.site)
@@ -60,13 +73,15 @@ class TestDeployedSiteWithSelenium(TestCase):
                 input_element = browser.find_element_by_id(element_id)
                 input_element.send_keys(valid_input[index])
 
-            form_element = browser.find_element_by_id(form_id)
+            form_element = browser.find_element_by_id(self.creationform)
             form_element.submit()
 
     def test_button_disabled(self):
+        submit = self.submit
+
         for browser in self.browsers:
             browser.get(self.site)
-            submit_button = browser.find_element_by_id('submit')
+            submit_button = browser.find_element_by_id(submit)
             self.assertFalse(submit_button.is_enabled())
 
     # def test_create_a_person_form_input_length_exceeded(self):

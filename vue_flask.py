@@ -78,6 +78,7 @@ def index():
         input_id=input_id,
         name_max_length=name_max_length,
         zipcode_max_length=zipcode_max_length,
+        population_limit=get_population_limit(),
     )
 
 
@@ -89,7 +90,12 @@ def get_input_id():
         'dob': 'dob',
         'zipcode': 'zipcode',
         'submit': 'submit',
+        'population': 'population',
     }
+
+
+def get_population_limit():
+    return 18
 
 
 def select_url_for(endpoint, filename):
