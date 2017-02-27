@@ -7,16 +7,22 @@
   <title>Person Creation Machine</title>
 
   <link rel="shortcut icon" href="{[ url_for['favicon'] ]}">
-  <link rel="stylesheet" type="text/css" href="{[ url_for['foundationcss'] ]}">
-  <link rel="stylesheet" type="text/css" href="{[ url_for['blowdrycss'] ]}">
-  <link rel="stylesheet" type="text/css" href="{[ url_for['maincss'] ]}">
+
+  {% if not is_production %}
+    <link rel="stylesheet" type="text/css" href="{[ url_for['foundationcss'] ]}">
+    <link rel="stylesheet" type="text/css" href="{[ url_for['blowdrycss'] ]}">
+    <link rel="stylesheet" type="text/css" href="{[ url_for['maincss'] ]}">
+  {% else %}
+    <link rel="stylesheet" type="text/css" href="{[ url_for['combinedcss'] ]}">
+  {% endif %}
+
   <link rel="stylesheet" type="text/css" href="{[ url_for['materialicons'] ]}">
 
   <script src="{[ url_for['vuejs'] ]}"></script>
   <script src="{[ url_for['firebase'] ]}"></script>
   <script src="{[ url_for['vuefire'] ]}"></script>
 </head>
-<body>
+<body class="bgc-hf2f2f2">
   <div id="app">
     <div class="row">
       <div class="small-12 columns bgc-hfde942 h4b4513">
@@ -253,9 +259,15 @@
     })
   </script>
 
-  <script src="{[ url_for['jquery'] ]}"></script>
-  <script src="{[ url_for['whatinput'] ]}"></script>
-  <script src="{[ url_for['foundationjs'] ]}"></script>
+  {% if not is_production %}
+    <script src="{[ url_for['jquery'] ]}"></script>
+    <script src="{[ url_for['whatinput'] ]}"></script>
+    <script src="{[ url_for['foundationjs'] ]}"></script>
+  {% else %}
+    <script src="{[ url_for['combinedjs'] ]}"></script>
+  {% endif %}
+
+
 
   <script>
       $(document).ready(function() {

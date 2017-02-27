@@ -59,6 +59,7 @@ def index():
         'foundationcss': select_url_for('static', filename='css/foundation.min.css'),
         'blowdrycss': select_url_for('static', filename='css/blowdry.min.css'),
         'maincss': select_url_for('static', filename='css/main.css'),
+        'combinedcss': select_url_for('static', filename='css/combined.css'),
         'materialicons': 'https://fonts.googleapis.com/icon?family=Material+Icons',
         'vuejs': 'https://unpkg.com/vue@2.0.7/dist/vue.js',
         'firebase': 'https://www.gstatic.com/firebasejs/3.6.10/firebase.js',
@@ -66,6 +67,7 @@ def index():
         'jquery': select_url_for('static', filename='js/vendor/jquery.js'),
         'whatinput': select_url_for('static', filename='js/vendor/what-input.js'),
         'foundationjs': select_url_for('static', filename='js/vendor/foundation.min.js'),
+        'combinedjs': select_url_for('static', filename='js/vendor/combined.js'),
     }
 
     input_id = get_input_id()
@@ -74,6 +76,7 @@ def index():
 
     return render_template(
         'index.html',
+        is_production=is_production(),
         url_for=url_for,
         input_id=input_id,
         name_max_length=name_max_length,
