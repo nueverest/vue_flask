@@ -83,7 +83,10 @@
 
       <div class="small-12 medium-6 large-8 columns bgc-h5276b8 white same-height">
         <h3 class="text-align-center white margin-top-20">People Created</h3>
-        <h6 class="text-align-center white margin-top-10"><i class="material-icons">&#xE7FB;</i> Total Population: <span id="{[ input_id['population'] ]}">{{ persons.length }}</span></h6>
+        <h6 class="text-align-center white margin-top-10">
+          <i class="material-icons">&#xE7FB;</i> Total Population:
+          <span id="{[ input_id['population'] ]}">{{ persons.length }}</span>
+        </h6>
 
         <div class="row padding-top-20">
           <div class="small-11 medium-10 large-6 columns small-centered box-shadow bgc-white black border-radius-3">
@@ -94,11 +97,11 @@
                   <div class="small-3 columns">Age</div>
                   <div class="small-2 columns text-align-center">&nbsp;</div>
                 </div>
-                <div class="row bgc-alternate" v-for="person in persons">
+                <div class="row bgc-alternate" v-for="(person, index) in persons">
                   <div class="small-7 columns">{{ person.firstname }} {{ person.lastname }}</div>
                   <div class="small-3 columns">{{ person.age }}</div>
                   <div class="small-2 columns text-align-center hb85276" v-on:click="removePerson(person)">
-                    <i class="material-icons font-size-18-i cursor-pointer">&#xE92B;</i>
+                    <i v-bind:id="index" class="material-icons font-size-18-i cursor-pointer">&#xE92B;</i>
                   </div>
                 </div>
               </div>
@@ -206,7 +209,7 @@
                 dob: this.newPerson.dob,
                 age: this.personsAge(this.newPerson.dob),
                 zipcode: this.newPerson.zipcode,
-                uid: this.user.uid
+                uid: this.user.uid                          // ID of anonymous user that input data.
               })
             }
         },

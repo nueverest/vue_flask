@@ -1,6 +1,7 @@
 # builtins
 from unittest import TestCase, main
 import requests
+from time import sleep
 
 # plugins
 from selenium import webdriver
@@ -16,9 +17,6 @@ from vue_flask import get_input_id, get_population_limit
 class TestDeployedSiteWithRequests(TestCase):
     def setUp(self):
         self.site = 'https://kw4udfbos9.execute-api.us-west-2.amazonaws.com/production'
-
-    def tearDown(self):
-        pass
 
     def test_server_is_up_and_running(self):
         request = requests.get(self.site)
@@ -53,9 +51,32 @@ class TestDeployedSiteWithSelenium(TestCase):
             self.addCleanup(browser.quit)
 
     def delete_person(self, browser):
-        pass
+        # Delete first person is list. First in First out.
+        first_delete_icon = browser.find_element_by_id('0')
+        first_delete_icon.click()
+
+    def handle_population_limits(self, browser, population_before):
+        self.assertTrue(0 <= population_before <= self.population_limit, msg='Population out of bounds.')
+
+        if population_before == self.population_limit:
+            self.delete_person(browser)
+            self.assertTrue(self.population_decremented(browser, population_before))
+
+    def population_decremented(self, browser, population_before):
+        # Reference: http://docs.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-waits
+        delay = 10   # in seconds
+        population_expected = unicode(int(population_before) - 1)
+
+        try:
+            WebDriverWait(browser, delay).until(
+                expected_conditions.text_to_be_present_in_element((By.ID, self.population), population_expected)
+            )
+            return True
+        except TimeoutException:
+            return False
 
     def population_incremented(self, browser, population_before):
+        # Reference: http://docs.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-waits
         delay = 10   # in seconds
         population_expected = unicode(int(population_before) + 1)
 
@@ -86,9 +107,9 @@ class TestDeployedSiteWithSelenium(TestCase):
         for browser in self.browsers:
             browser.get(self.site)
             population_element = browser.find_element_by_id(self.population)
-            population_before = population_element.text
-
-            # TODO: if population == max delete one
+            sleep(1)    # Wait for vue and firebase lag.
+            population_before = int(population_element.text)
+            self.handle_population_limits(browser, population_before)
 
             for index, element_id in enumerate(element_ids):
                 input_element = browser.find_element_by_id(element_id)
