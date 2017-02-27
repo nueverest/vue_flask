@@ -50,12 +50,22 @@ class TestDeployedSiteWithSelenium(TestCase):
         for browser in self.browsers:
             self.addCleanup(browser.quit)
 
+    def create_person(self, browser, input):
+        element_ids = [self.firstname, self.lastname, self.dob, self.zipcode, ]
+
+        for index, element_id in enumerate(element_ids):
+            input_element = browser.find_element_by_id(element_id)
+            input_element.send_keys(input[index])
+
+        submit_button = browser.find_element_by_id(self.submit)
+        submit_button.click()
+
     def delete_person(self, browser):
         # Delete first person is list. First in First out.
         first_delete_icon = browser.find_element_by_id('0')
         first_delete_icon.click()
 
-    def handle_population_limits(self, browser):
+    def handle_population_limits(self, browser, create=False, delete=False):
         """ The population value comes from firebase and is loading by vue. Both of these operations take time. A delay
         is required to ensure that the population value is correct since vue sometimes loads the value 0 then changes
         it once firebase returns.
@@ -63,7 +73,8 @@ class TestDeployedSiteWithSelenium(TestCase):
         Steps:
         Wait for vue and firebase.
         Test that population is within limits.
-        If population is at the max population limit decrement population.
+        If population is at the min population limit and delete mode increment population.
+        If population is at the max population limit and create mode decrement population.
         Return population value.
         """
         population_element = browser.find_element_by_id(self.population)
@@ -72,7 +83,13 @@ class TestDeployedSiteWithSelenium(TestCase):
 
         self.assertTrue(0 <= population <= self.population_limit, msg='Population out of bounds.')
 
-        if population == self.population_limit:
+        # Pre-Deletion
+        if population == 0 and delete:
+            self.create_person(browser, input=['Gerotty', 'Rafan', '1968-10-08', '00760-2341', ])
+            return population + 1
+
+        # Pre-Creation
+        if population == self.population_limit and create:
             self.delete_person(browser)
             self.assertTrue(self.population_decremented(browser, population))
             return population - 1
@@ -111,20 +128,11 @@ class TestDeployedSiteWithSelenium(TestCase):
             population = int(population_element.text)
             self.assertTrue(0 <= population <= self.population_limit)
 
-    def test_create_a_person_form_valid_data(self):
-        element_ids = [self.firstname, self.lastname, self.dob, self.zipcode, ]
-        valid_input = ['Xython', 'Ber', '1999-09-09', '85000', ]
-
+    def test_create_person_form_with_valid_data(self):
         for browser in self.browsers:
             browser.get(self.site)
-            population_before = self.handle_population_limits(browser)
-
-            for index, element_id in enumerate(element_ids):
-                input_element = browser.find_element_by_id(element_id)
-                input_element.send_keys(valid_input[index])
-
-            submit_button = browser.find_element_by_id(self.submit)
-            submit_button.click()
+            population_before = self.handle_population_limits(browser, create=True)
+            self.create_person(browser, input=['Xython', 'Ber', '1999-09-09', '85000', ])
             self.assertTrue(self.population_incremented(browser, population_before))
 
     def test_button_disabled(self):
@@ -144,24 +152,12 @@ class TestDeployedSiteWithSelenium(TestCase):
     # def test_create_a_person_form_invalid_zipcodes(self):
     #     pass
     #
-    # def test_create_a_person_form(self):
-    #     pass
-    #
-    # def test_create_a_person_button_disabled(self):
-    #     pass
-    #
-    # def test_remove_person_top_table(self):
-    #     pass
-    #
-    # def test_remove_person_bottom_table(self):
-    #     pass
-    #
-    # def test_population_limit(self):
-    #     pass
-    #
-    # def test_population_changed(self):
-    #     pass
-
+    def test_remove_person_top_table(self):
+        for browser in self.browsers:
+            browser.get(self.site)
+            population_before = self.handle_population_limits(browser, delete=True)
+            self.delete_person(browser)
+            self.assertTrue(self.population_decremented(browser, population_before))
 
 if __name__ == '__main__':
     main()
