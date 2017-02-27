@@ -47,6 +47,7 @@ class TestDeployedSiteWithSelenium(TestCase):
 
         self.population_limit = get_population_limit()
 
+    def tearDown(self):
         for browser in self.browsers:
             self.addCleanup(browser.quit)
 
