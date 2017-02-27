@@ -4,10 +4,13 @@ import requests
 
 # plugins
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions
+from selenium.common.exceptions import TimeoutException
 
 # application
-from vue_flask import get_input_id,
+from vue_flask import get_input_id, get_population_limit
 
 
 class TestDeployedSiteWithRequests(TestCase):
@@ -44,11 +47,25 @@ class TestDeployedSiteWithSelenium(TestCase):
         self.submit = self.input_id['submit']
         self.population = self.input_id['population']
 
+        self.population_limit = get_population_limit()
+
         for browser in self.browsers:
             self.addCleanup(browser.quit)
 
-    def tearDown(self):
+    def delete_person(self, browser):
         pass
+
+    def population_incremented(self, browser, population_before):
+        delay = 10   # in seconds
+        population_expected = unicode(int(population_before) + 1)
+
+        try:
+            WebDriverWait(browser, delay).until(
+                expected_conditions.text_to_be_present_in_element((By.ID, self.population), population_expected)
+            )
+            return True
+        except TimeoutException:
+            return False
 
     def test_page_title(self):
         for browser in self.browsers:
@@ -60,21 +77,26 @@ class TestDeployedSiteWithSelenium(TestCase):
             browser.get(self.site)
             population_element = browser.find_element_by_id(self.population)
             population = int(population_element.text)
-            self.assertTrue(0 <= population <= )
+            self.assertTrue(0 <= population <= self.population_limit)
 
     def test_create_a_person_form_valid_data(self):
         element_ids = [self.firstname, self.lastname, self.dob, self.zipcode, ]
-        valid_input = ['Xython', 'Ber', '1999-09-09', '85000', ]
+        valid_input = ['Xython', 'Ber', '9/9/1999', '85000', ]
 
         for browser in self.browsers:
             browser.get(self.site)
+            population_element = browser.find_element_by_id(self.population)
+            population_before = population_element.text
+
+            # TODO: if population == max delete one
 
             for index, element_id in enumerate(element_ids):
                 input_element = browser.find_element_by_id(element_id)
                 input_element.send_keys(valid_input[index])
 
-            form_element = browser.find_element_by_id(self.creationform)
-            form_element.submit()
+            submit_button = browser.find_element_by_id(self.submit)
+            submit_button.click()
+            self.assertTrue(self.population_incremented(browser, population_before))
 
     def test_button_disabled(self):
         submit = self.submit
