@@ -1,8 +1,11 @@
 # Flask
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 from flask import url_for as local_url_for
 from flask_s3 import FlaskS3
 from flask_s3 import url_for as s3_url_for
+
+# custom
+from secrets import is_production
 
 
 class CustomFlask(Flask):
@@ -21,17 +24,31 @@ class CustomFlask(Flask):
     ))
 
 
-def create_app():
-    app = CustomFlask(__name__)
-    app.config['DEBUG'] = True
-    app.config['FLASKS3_BUCKET_NAME'] = 'nueverest'
-    app.config['FLASKS3_USE_HTTPS'] = True
-    app.config['USE_S3_DEBUG'] = True
-    return app
+# Configuration Options
+class Config(object):
+    DEBUG = False
+    TESTING = False
+    FLASKS3_BUCKET_NAME = 'nueverest'
+    FLASKS3_USE_HTTPS = True
+    USE_S3_DEBUG = False
 
 
-# Initialize App
-app = create_app()
+class Production(Config):
+    pass
+
+
+class Development(Config):
+    DEBUG = True
+    USE_S3_DEBUG = True
+
+
+class Testing(Config):
+    TESTING = True
+
+
+# Initialize Application
+app = CustomFlask(__name__)
+app.config.from_object(Production) if is_production() else app.config.from_object(Development)
 s3 = FlaskS3(app)
 
 
@@ -73,20 +90,6 @@ def get_input_id():
         'zipcode': 'zipcode',
         'submit': 'submit',
     }
-
-
-def is_production():
-    """ Determines if app is running on the production server or not.
-
-    Get Current URI.
-    Extract root location.
-    Compare root location against developer server value 127.0.0.1:5000.
-    :return: (bool) True if code is running on the production server, and False otherwise.
-    """
-    root_url = request.url_root
-    developer_url = 'http://127.0.0.1:5000/'
-    secure = request.is_secure
-    return root_url != developer_url and secure
 
 
 def select_url_for(endpoint, filename):

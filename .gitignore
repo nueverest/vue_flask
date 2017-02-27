@@ -2,6 +2,10 @@
 # PYTHON #
 ##########
 
+# Secret file
+test_secrets.py
+secrets.py
+
 # Zappa Zip File
 *.zip
 
