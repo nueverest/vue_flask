@@ -55,38 +55,49 @@ class TestDeployedSiteWithSelenium(TestCase):
         first_delete_icon = browser.find_element_by_id('0')
         first_delete_icon.click()
 
-    def handle_population_limits(self, browser, population_before):
-        self.assertTrue(0 <= population_before <= self.population_limit, msg='Population out of bounds.')
+    def handle_population_limits(self, browser):
+        """ The population value comes from firebase and is loading by vue. Both of these operations take time. A delay
+        is required to ensure that the population value is correct since vue sometimes loads the value 0 then changes
+        it once firebase returns.
 
-        if population_before == self.population_limit:
+        Steps:
+        Wait for vue and firebase.
+        Test that population is within limits.
+        If population is at the max population limit decrement population.
+        Return population value.
+        """
+        population_element = browser.find_element_by_id(self.population)
+        sleep(1.5)    # Wait for vue and firebase lag.
+        population = int(population_element.text)
+
+        self.assertTrue(0 <= population <= self.population_limit, msg='Population out of bounds.')
+
+        if population == self.population_limit:
             self.delete_person(browser)
-            self.assertTrue(self.population_decremented(browser, population_before))
+            self.assertTrue(self.population_decremented(browser, population))
+            return population - 1
+
+        return population
+
+    def population_changed(self, browser, population_expected):
+        # Reference: http://docs.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-waits
+        # https://github.com/SeleniumHQ/selenium/blob/master/py/selenium/webdriver/support/expected_conditions.py
+        delay = 5   # in seconds
+        try:
+            WebDriverWait(browser, delay).until(
+                expected_conditions.text_to_be_present_in_element((By.ID, self.population), population_expected)
+            )
+            return True
+        except TimeoutException:
+            return False
 
     def population_decremented(self, browser, population_before):
-        # Reference: http://docs.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-waits
-        delay = 10   # in seconds
         population_expected = unicode(int(population_before) - 1)
-
-        try:
-            WebDriverWait(browser, delay).until(
-                expected_conditions.text_to_be_present_in_element((By.ID, self.population), population_expected)
-            )
-            return True
-        except TimeoutException:
-            return False
+        return self.population_changed(browser, population_expected)
 
     def population_incremented(self, browser, population_before):
-        # Reference: http://docs.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-waits
-        delay = 10   # in seconds
         population_expected = unicode(int(population_before) + 1)
-
-        try:
-            WebDriverWait(browser, delay).until(
-                expected_conditions.text_to_be_present_in_element((By.ID, self.population), population_expected)
-            )
-            return True
-        except TimeoutException:
-            return False
+        return self.population_changed(browser, population_expected)
 
     def test_page_title(self):
         for browser in self.browsers:
@@ -106,10 +117,7 @@ class TestDeployedSiteWithSelenium(TestCase):
 
         for browser in self.browsers:
             browser.get(self.site)
-            population_element = browser.find_element_by_id(self.population)
-            sleep(1)    # Wait for vue and firebase lag.
-            population_before = int(population_element.text)
-            self.handle_population_limits(browser, population_before)
+            population_before = self.handle_population_limits(browser)
 
             for index, element_id in enumerate(element_ids):
                 input_element = browser.find_element_by_id(element_id)
