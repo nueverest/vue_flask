@@ -1,5 +1,5 @@
 # Flask
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask import url_for as local_url_for
 from flask_s3 import FlaskS3
 from flask_s3 import url_for as s3_url_for
@@ -99,7 +99,7 @@ def select_url_for(endpoint, filename):
     :param filename: (string) Media filename including subpath if necessary e.g. 'css/main.css', 'flower.jpg'
     :return: (string) Local url sub-path or full S3 url for media.
     """
-    if is_production():
+    if is_production() or request.is_secure:
         return s3_url_for(endpoint=endpoint, filename=filename)
 
     return local_url_for(endpoint=endpoint, filename=filename)

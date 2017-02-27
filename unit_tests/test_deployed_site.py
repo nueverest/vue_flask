@@ -44,10 +44,14 @@ class TestDeployedSiteWithSelenium(TestCase):
             browser.get(self.site)
             self.assertIn('Person Creation Machine', browser.title)
 
+    def test_population_exists(self):
+        for browser in self.browsers:
+            browser.get(self.site)
+
     def test_create_a_person_form_valid_data(self):
         form_id = 'creationform'
         element_ids = ['firstname', 'lastname', 'dob', 'zipcode']
-        valid_input = ['Xython', 'Ber', '9/9/1999', '85000']
+        valid_input = ['Xython', 'Ber', '1999-09-09', '85000']
 
         for browser in self.browsers:
             browser.get(self.site)
@@ -59,6 +63,11 @@ class TestDeployedSiteWithSelenium(TestCase):
             form_element = browser.find_element_by_id(form_id)
             form_element.submit()
 
+    def test_button_disabled(self):
+        for browser in self.browsers:
+            browser.get(self.site)
+            submit_button = browser.find_element_by_id('submit')
+            self.assertFalse(submit_button.is_enabled())
 
     # def test_create_a_person_form_input_length_exceeded(self):
     #     pass
@@ -86,8 +95,6 @@ class TestDeployedSiteWithSelenium(TestCase):
     #
     # def test_population_changed(self):
     #     pass
-
-
 
 
 if __name__ == '__main__':
