@@ -48,18 +48,19 @@ semi-colon to a file requires the full project to be uploaded.  Projects take mi
 
 # Combine Javascript files into one and minify with uglifyjs 
 - Open command line as Administrator.
-- Run `npm install -g concat-cli` the `-g` installs concat-cli globally.
+- Run `npm install -g uglify-js -g` the `-g` install uglify-js globally.
 - Run `npm list -g --depth=0` to confirm installation.
-- To manually run use `concat-cli -f jquery.js what-input.js foundation.js -o combined.js` reference: https://www.npmjs.com/package/concat-cli
-- Setup a custom File Watcher for PyCharm.
+- You can manually run `uglifyjs --compress --mangle --output combined.min.js -- {filename1}.js {filename2}.js {filename3}.js` reference: http://www.aip.im/2015/02/how-to-minify-and-merge-javascript-files-with-uglifyjs-2/
+- Recommended: Setup a custom File Watcher for PyCharm or your IDE. https://www.jetbrains.com/help/pycharm/2016.3/minifying-javascript.html
+- Configuring File Watcher output path http://stackoverflow.com/a/36038914/1783439
 
-# Setup auto-minify CSS and JS using node.js yuicompress
+# Setup auto-minify CSS using node.js yuicompress
 - Install node package manager (npm) on your machine.
 - Place npm on the system path.
 - Open command line as Administrator.
 - Run `npm install -g yuicompressor` the `-g` installs the yuicompressor globally.
 - Run `npm list -g --depth=0` to confirm installation.
-- Setup a File Watcher for YUI CSS and YUI JS https://www.jetbrains.com/help/pycharm/2016.3/minifying-css.html
+- Setup a File Watcher for YUI CSS https://www.jetbrains.com/help/pycharm/2016.3/minifying-css.html
 - Configuring File Watcher output path http://stackoverflow.com/a/36038914/1783439
 
 # How to Deploy using Zappa - Serverless.
