@@ -66,7 +66,7 @@ semi-colon to a file requires the full project to be uploaded.  Projects take mi
 - Configuring File Watcher output path http://stackoverflow.com/a/36038914/1783439
 
 # Setup node-zopfli to compress combined CSS and JS files
-- Zopfli Compresses gzip files 5% better than gzip. To achieve the 5% it takes 100x longer than gzip. That is fine for us since we are not doing on-the-fly or just-in-time compression.
+- Zopfli Compresses gzip files 5% better than gzip. To achieve the 5% it takes 100x longer than gzip. That is fine for us since we are not doing on-the-fly or just-in-time compression. https://www.npmjs.com/package/node-zopfli
 - Requires Python 2.7 and either GCC (Unix) or Visual Studio Express (Windows)
 - To install `gcc` on Windows via MinGW use this https://yichaoou.github.io/tutorials/software/2016/06/28/git-bash-install-gcc
 - Open command line as Administrator.
