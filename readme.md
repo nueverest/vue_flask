@@ -46,6 +46,22 @@ semi-colon to a file requires the full project to be uploaded.  Projects take mi
 - If you are using an IDE like PyCharm you can setup a File Watcher https://www.jetbrains.com/help/pycharm/2016.3/transpiling-sass-less-and-scss-to-css.html#intro
 - Configuring File Watcher output path http://stackoverflow.com/a/36038914/1783439
 
+# Combine Javascript files into one and minify with uglifyjs 
+- Open command line as Administrator.
+- Run `npm install -g concat-cli` the `-g` installs concat-cli globally.
+- Run `npm list -g --depth=0` to confirm installation.
+- To manually run use `concat-cli -f jquery.js what-input.js foundation.js -o combined.js` reference: https://www.npmjs.com/package/concat-cli
+- Setup a custom File Watcher for PyCharm.
+
+# Setup auto-minify CSS and JS using node.js yuicompress
+- Install node package manager (npm) on your machine.
+- Place npm on the system path.
+- Open command line as Administrator.
+- Run `npm install -g yuicompressor` the `-g` installs the yuicompressor globally.
+- Run `npm list -g --depth=0` to confirm installation.
+- Setup a File Watcher for YUI CSS and YUI JS https://www.jetbrains.com/help/pycharm/2016.3/minifying-css.html
+- Configuring File Watcher output path http://stackoverflow.com/a/36038914/1783439
+
 # How to Deploy using Zappa - Serverless.
 - Create and Activate a virtual environment for this project. Reference: https://virtualenv.pypa.io/en/stable/installation/
 - `pip install requirements.txt`

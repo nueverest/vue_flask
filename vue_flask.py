@@ -61,9 +61,6 @@ def index():
         'vuejs': 'https://unpkg.com/vue@2.0.7/dist/vue.js',
         'firebase': 'https://www.gstatic.com/firebasejs/3.6.10/firebase.js',
         'vuefire': 'https://unpkg.com/vuefire@1.3.0/dist/vuefire.js',
-        'jquery': select_url_for('static', filename='js/vendor/jquery.js'),
-        'whatinput': select_url_for('static', filename='js/vendor/what-input.js'),
-        'foundationjs': select_url_for('static', filename='js/vendor/foundation.min.js'),
         'combinedjs': select_url_for('static', filename='js/vendor/combined.js'),
     }
 
