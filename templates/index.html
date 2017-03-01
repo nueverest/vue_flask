@@ -4,16 +4,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Person Creation Machine</title>
 
   <link rel="shortcut icon" href="{[ url_for['favicon'] ]}">
-
   <link rel="stylesheet" type="text/css" href="{[ url_for['combinedcss'] ]}">
-  <link rel="stylesheet" type="text/css" href="{[ url_for['materialicons'] ]}">
-
-  <script src="{[ url_for['vuejs'] ]}"></script>
-  <script src="{[ url_for['firebase'] ]}"></script>
-  <script src="{[ url_for['vuefire'] ]}"></script>
 </head>
 <body class="bgc-hf2f2f2">
   <div id="app">
@@ -181,8 +176,10 @@
           if (user) {
             this.user = user;
             this.$bindAsArray('persons', db.ref('persons'));              // https://github.com/vuejs/vuefire/blob/master/src/vuefire.js#L169
+            console.log('user logged in: ', user);
           }
           else {
+            console.log('not logged in…');
             firebase.auth().signInAnonymously().catch(console.error);     // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signInAnonymously
           }
         }.bind(this))
