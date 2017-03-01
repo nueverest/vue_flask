@@ -72,7 +72,7 @@ semi-colon to a file requires the full project to be uploaded.  Projects take mi
 - Open command line as Administrator.
 - Run `npm install -g node-zopfli`
 - Run `npm list -g --depth=0` to confirm installation.
-- Navigate to <path to>/npm/node_modules/node-zopfli/zopfli
+- Navigate to <path to>/npm/node_modules/node-zopfli/zopfli on your machine.
 - Run `gcc src/zopfli/*.c -O2 -W -Wall -Wextra -Wno-unused-function -ansi -pedantic -lm -o zopfli`
 - An executable file named `zopfli` (linux) or `zopfli.exe` (windows) should now appear in your folder.
 - Setup two Custom File Watchers with zopfli for CSS and JS.  Use combined.min.css and combined.js 
@@ -102,6 +102,7 @@ semi-colon to a file requires the full project to be uploaded.  Projects take mi
 - Enable file Caching so that browsers do not need to download the files every time the page loads.
 
 # Testing with Flask-Testing, Selenium, Google chromedriver, Mozilla geckodriver
+- `pip install selenium`
 - Google chromedriver https://sites.google.com/a/chromium.org/chromedriver/downloads
 - Mozilla geckodriver https://github.com/mozilla/geckodriver/releases
 - Microsoft edge webdriver https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/
