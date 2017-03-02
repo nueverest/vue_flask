@@ -79,7 +79,7 @@ def index():
 
 
 def get_css_filename():
-    return 'css/combined.min.css.gz' if is_production() else 'css/combined.min.css'
+    return 'css/combined.min.css.gz' if is_production() else 'css/processed/combined.min.css'
 
 
 def get_js_filename():
