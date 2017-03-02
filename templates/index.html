@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="keywords" content="python, vuejs, flask, firebase, selenium, serverless, scss, zappa">
-  <meta name="description" content="A free demo that showcases a serverless site with real-time data.">
+  <meta name="keywords" content="python, vuejs, flask, firebase, selenium, serverless, scss, zappa, responsive, zurb foundation 6">
+  <meta name="description" content="A free demo that showcases a responsive serverless website with real-time data.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Person Creation Machine</title>
@@ -100,6 +100,12 @@
                     <i v-bind:id="index" class="material-icons font-size-18-i cursor-pointer">&#xE92B;</i>
                   </div>
                 </div>
+                <div class="row font-size-18 line-height-2rem padding-bottom-30" v-if="persons.length <= 0">
+                  <div class="small-12 columns text-align-center">
+                    <p class="bold margin-top-16">No people exist.</p>
+                    <i class="material-icons bold hb85276">&#xE5C4;</i> Use the form on the left to add people.
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -126,6 +132,12 @@
               <div class="small-3 large-2 columns">{{ person.zipcode }}</div>
               <div class="small-1 columns text-align-center hb85276" v-on:click="removePerson(person)">
                 <i class="material-icons font-size-18-i cursor-pointer">&#xE92B;</i>
+              </div>
+            </div>
+            <div class="row font-size-18 line-height-2rem padding-bottom-30" v-if="persons.length <= 0">
+              <div class="small-12 columns text-align-center">
+                <p class="bold margin-top-16">No people exist.</p>
+                <i class="material-icons bold hb85276 font-size-36-i rotate-m30">&#xE5D8;</i> Use the form on the top-left to add people.
               </div>
             </div>
           </div>

@@ -101,6 +101,7 @@ semi-colon to a file requires the full project to be uploaded.  Projects take mi
 - Upload these two files to S3 and make the files public http://www.rightbrainnetworks.com/blog/serving-compressed-gzipped-static-files-from-amazon-s3-or-cloudfront/
 - AWS Cloudfront is a CDN that can be linked to your S3 bucket. A Content Delivery Network (CDN) places the data closer to the end user by storing your files all over the world.
 - Enable file Caching so that browsers do not need to download the files every time the page loads. https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching#defining-optimal-cache-control-policy
+- Check your site speed with pingdom or other service https://tools.pingdom.com/#!/c1UXFm/https://kw4udfbos9.execute-api.us-west-2.amazonaws.com/production
 
 # Testing with Flask-Testing, Selenium, Google chromedriver, Mozilla geckodriver
 - `pip install selenium`
