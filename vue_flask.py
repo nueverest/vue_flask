@@ -83,7 +83,7 @@ def get_css_filename():
 
 
 def get_js_filename():
-    return 'js/vendor/combined.js.gz' if is_production() else 'js/vendor/combined.js'
+    return 'js/vendor/production.js.gz' if is_production() else 'js/vendor/dev.js'
 
 
 def get_input_id():

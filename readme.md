@@ -57,6 +57,7 @@ semi-colon to a file requires the full project to be uploaded.  Projects take mi
 - You can manually run `uglifyjs --compress --mangle --output combined.min.js -- {filename1}.js {filename2}.js {filename3}.js` reference: http://www.aip.im/2015/02/how-to-minify-and-merge-javascript-files-with-uglifyjs-2/
 - Recommended: Setup a custom File Watcher for PyCharm or your IDE. https://www.jetbrains.com/help/pycharm/2016.3/minifying-javascript.html
 - Configuring File Watcher output path http://stackoverflow.com/a/36038914/1783439
+- Set this up twice. One for combined.dev.js (vue.js debugging included) and one for combined.js (vue.min.js debugging removed)
 
 # Setup auto-minify CSS using node.js yuicompress
 - Open command line as Administrator.
@@ -65,7 +66,7 @@ semi-colon to a file requires the full project to be uploaded.  Projects take mi
 - Setup a File Watcher for YUI CSS https://www.jetbrains.com/help/pycharm/2016.3/minifying-css.html
 - Configuring File Watcher output path http://stackoverflow.com/a/36038914/1783439
 
-# Setup node-zopfli to compress combined CSS and JS files
+# Setup node-zopfli to compress combined CSS and JS files for Production
 - Zopfli Compresses gzip files 5% better than gzip. To achieve the 5% it takes 100x longer than gzip. That is fine for us since we are not doing on-the-fly or just-in-time compression. https://www.npmjs.com/package/node-zopfli
 - Requires Python 2.7 and either GCC (Unix) or Visual Studio Express (Windows)
 - To install `gcc` on Windows via MinGW use this https://yichaoou.github.io/tutorials/software/2016/06/28/git-bash-install-gcc
@@ -75,7 +76,7 @@ semi-colon to a file requires the full project to be uploaded.  Projects take mi
 - Navigate to <path to>/npm/node_modules/node-zopfli/zopfli on your machine.
 - Run `gcc src/zopfli/*.c -O2 -W -Wall -Wextra -Wno-unused-function -ansi -pedantic -lm -o zopfli`
 - An executable file named `zopfli` (linux) or `zopfli.exe` (windows) should now appear in your folder.
-- Setup two Custom File Watchers with zopfli for CSS and JS.  Use combined.min.css and combined.js 
+- Setup two Custom File Watchers with zopfli for CSS and JS.  Use combined.min.css and combined.js (production) 
 - Configuring File Watcher output path http://stackoverflow.com/a/36038914/1783439
 
 # How to Deploy using Zappa - Serverless.
