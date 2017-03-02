@@ -5,8 +5,9 @@ import functools
 
 
 def gzipped(f):
-    """"
-    AWS serverless architecture places the responsibility of gzipping a flask view on the application.
+    """" Custom view decorator that gzips the view if the server is capable.
+
+    Background: AWS serverless architecture places the responsibility of gzipping a flask view on the application.
     Normally, the web server (nginx, apache, iis) would handle this task.
     Source: http://flask.pocoo.org/snippets/122/
     """
