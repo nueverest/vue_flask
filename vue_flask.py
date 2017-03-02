@@ -6,6 +6,7 @@ from flask_s3 import url_for as s3_url_for
 
 # custom
 from secrets import is_production
+from gzipper import gzipped
 
 
 class CustomFlask(Flask):
@@ -53,6 +54,7 @@ s3 = FlaskS3(app)
 
 
 @app.route('/')
+@gzipped
 def index():
     url_for = {
         'favicon': select_url_for('static', filename='favicon.ico'),
