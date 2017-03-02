@@ -94,13 +94,13 @@ semi-colon to a file requires the full project to be uploaded.  Projects take mi
 - `zappa undeploy production`
 
 # Helpful notes about deployment.
-- Combine, minify, and gzip CSS files.
+- Combine, minify, and gzip CSS files. 
 - Combine, minify, and gzip JS files.
 - You can use `gzip -9 filename.css`. The `-9` provides the best compression.
 - Zopfli https://github.com/obp/zopfli developed by Google is more powerful and may one day be integrated with this project.
 - Upload these two files to S3 and make the files public http://www.rightbrainnetworks.com/blog/serving-compressed-gzipped-static-files-from-amazon-s3-or-cloudfront/
 - AWS Cloudfront is a CDN that can be linked to your S3 bucket. A Content Delivery Network (CDN) places the data closer to the end user by storing your files all over the world.
-- Enable file Caching so that browsers do not need to download the files every time the page loads.
+- Enable file Caching so that browsers do not need to download the files every time the page loads. https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching#defining-optimal-cache-control-policy
 
 # Testing with Flask-Testing, Selenium, Google chromedriver, Mozilla geckodriver
 - `pip install selenium`
