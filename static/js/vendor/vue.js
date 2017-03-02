@@ -2,7 +2,7 @@
  * Vue.js v2.2.1
  * (c) 2014-2017 Evan You
  * Released under the MIT License.
- * Source: https://unpkg.com/vue@2.2.1
+ * Source: https://unpkg.com/vue@2.2.1/dist/
  */
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
