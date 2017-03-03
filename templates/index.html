@@ -235,15 +235,15 @@
           return Math.abs(ageDate.getFullYear() - 1970);
         },
         addDash: function() {
-          // Formats the zipcode with a dash '-' if it is longer than 5 characters.
+          // If zipcode is longer than 5 characters add a dash '-' as the 6th character.
           var index = 5;
           var postalcode = this.newPerson.zipcode;
-          var len = postalcode.length;
+
           if(postalcode.length > index) {
             if(postalcode.charAt(index) !== '-') {
               if(postalcode.charAt(index) == ' ') {
                 // 55555 4444 case replace ' ' with '-'  --> 55555-4444
-                this.newPerson.zipcode = postalcode.substr(0, index) + '-' + postalcode.substr(index + 1);
+                this.newPerson.zipcode = postalcode.substring(0, index) + '-' + postalcode.substring(index + 1);
               }
               else {
                 // 5555554444 case insert '-' --> 55555-4444
