@@ -242,11 +242,11 @@
           if(postalcode.length > index) {
             if(postalcode.charAt(index) !== '-') {
               if(postalcode.charAt(index) == ' ') {
-                // 55555 4444 case replace ' ' with '-'  --> 55555-4444
+                // Replace ' ' with '-' e.g. 55555 4444 --> 55555-4444
                 this.newPerson.zipcode = postalcode.substring(0, index) + '-' + postalcode.substring(index + 1);
               }
               else {
-                // 5555554444 case insert '-' --> 55555-4444
+                // Insert '-' e.g. 5555554444 --> 55555-4444
                 this.newPerson.zipcode = postalcode.substring(0, index) + '-' + postalcode.substring(index);
               }
             }
