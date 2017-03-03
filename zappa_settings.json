@@ -4,6 +4,6 @@
         "aws_region": "us-west-2",
         "app_function": "vue_flask.app",
         "delete_local_zip": true,
-        "exclude": ["deployed", "static", "unit_tests", "*.css", "*.js", "*.json", "*.csv", "*.ico", "*.md"]
+        "exclude": [".idea", "archive", "deployed", "static", "unit_tests", "*.scss", "*.css", "*.js", "*.json", "*.csv", "*.ico", "*.md"]
     }
 }
