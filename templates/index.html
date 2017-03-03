@@ -59,7 +59,7 @@
                   <span class="hb85276 float-right" v-show="!validation.ziprequired">Required</span>
                   <span class="hb85276 float-right" v-show="validation.ziprequired && !validation.ziplength">Max Len {[ zipcode_max_length ]}</span>
                   <span class="hb85276 float-right" v-show="validation.ziprequired && validation.ziplength && !validation.zipregex">Ex<span class="display-large-up">ample</span>: 85812</span>
-                  <input id="{[ input_id['zipcode'] ]}" type="text" v-model="newPerson.zipcode" placeholder="55555-4444" maxlength="{[ zipcode_max_length ]}">
+                  <input id="{[ input_id['zipcode'] ]}" type="text" v-on:keyup="addDash" v-model="newPerson.zipcode" placeholder="55555-4444" maxlength="{[ zipcode_max_length ]}">
                 </div>
               </div>
 
@@ -233,6 +233,24 @@
           var ageDifMs = Date.now() - birthday.getTime();
           var ageDate = new Date(ageDifMs); // miliseconds from epoch
           return Math.abs(ageDate.getFullYear() - 1970);
+        },
+        addDash: function() {
+          // Formats the zipcode with a dash '-' if it is longer than 5 characters.
+          var index = 5;
+          var postalcode = this.newPerson.zipcode;
+          var len = postalcode.length;
+          if(postalcode.length > index) {
+            if(postalcode.charAt(index) !== '-') {
+              if(postalcode.charAt(index) == ' ') {
+                // 55555 4444 case replace ' ' with '-'  --> 55555-4444
+                this.newPerson.zipcode = postalcode.substr(0, index) + '-' + postalcode.substr(index + 1);
+              }
+              else {
+                // 5555554444 case insert '-' --> 55555-4444
+                this.newPerson.zipcode = postalcode.substring(0, index) + '-' + postalcode.substring(index);
+              }
+            }
+          }
         }
       },
       computed: {
