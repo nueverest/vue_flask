@@ -59,7 +59,7 @@
                   <span class="hb85276 float-right" v-show="!validation.ziprequired">Required</span>
                   <span class="hb85276 float-right" v-show="validation.ziprequired && !validation.ziplength">Max Len {[ zipcode_max_length ]}</span>
                   <span class="hb85276 float-right" v-show="validation.ziprequired && validation.ziplength && !validation.zipregex">Ex<span class="display-large-up">ample</span>: 85812</span>
-                  <input id="{[ input_id['zipcode'] ]}" type="text" v-on:keyup="addDash" v-model="newPerson.zipcode" placeholder="55555-4444" maxlength="{[ zipcode_max_length ]}">
+                  <input id="{[ input_id['zipcode'] ]}" type="text" v-on:keyup="cleanZipCode" v-model="newPerson.zipcode" placeholder="55555-4444" maxlength="{[ zipcode_max_length ]}">
                 </div>
               </div>
 
@@ -190,10 +190,10 @@
           if (user) {
             this.user = user;
             this.$bindAsArray('persons', db.ref('persons'));              // https://github.com/vuejs/vuefire/blob/master/src/vuefire.js#L169
-            console.log('user logged in: ', user);
+            //console.log('user logged in: ', user);
           }
           else {
-            console.log('not logged in…');
+            //console.log('not logged in…');
             firebase.auth().signInAnonymously().catch(console.error);     // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signInAnonymously
           }
         }.bind(this))
@@ -248,6 +248,35 @@
               else {
                 // Insert '-' e.g. 5555554444 --> 55555-4444
                 this.newPerson.zipcode = postalcode.substring(0, index) + '-' + postalcode.substring(index);
+              }
+            }
+          }
+        },
+        cleanZipCode: function() {
+          this.addDash();
+
+          var zipcode = this.newPerson.zipcode;
+          var len = this.newPerson.zipcode.length;
+
+
+          // if index != 5 then remove non-digit characters. 0-9 /^[0-9]$/.test(character);
+          // if index == 5 then character must be a dash '-' (addDash() must work log error).
+          if(len > 0) {
+            // Loop through all characters of postalcode.
+            for( var i = 0; i < len; i++) {
+              var character = zipcode.charAt(i);
+
+              if(i != 5) {
+                  if(!/^[0-9]$/.test(character)) {
+                    // Replace non-digit with '' e.g. 123a5 --> 1235
+                    this.newPerson.zipcode = zipcode.substring(0, i) + '' + zipcode.substring(i + 1);
+                    len--;
+                  }
+              }
+              else {
+                  if(character != '-') {
+                    console.error('addDash() failed.')
+                  }
               }
             }
           }
