@@ -59,7 +59,7 @@
                   <span class="hb85276 float-right" v-show="!validation.ziprequired">Required</span>
                   <span class="hb85276 float-right" v-show="validation.ziprequired && !validation.ziplength">Max Len {[ zipcode_max_length ]}</span>
                   <span class="hb85276 float-right" v-show="validation.ziprequired && validation.ziplength && !validation.zipregex">Ex<span class="display-large-up">ample</span>: 85812</span>
-                  <input id="{[ input_id['zipcode'] ]}" type="text" v-on:keyup="cleanZipCode" v-model="newPerson.zipcode" placeholder="55555-4444" maxlength="{[ zipcode_max_length ]}">
+                  <input id="{[ input_id['zipcode'] ]}" type="text" v-on:keydown="cleanZipCode" v-on:keyup="cleanZipCode"  v-model="newPerson.zipcode" placeholder="55555-4444" maxlength="{[ zipcode_max_length ]}">
                 </div>
               </div>
 
@@ -253,14 +253,12 @@
           }
         },
         cleanZipCode: function() {
+          // Note this is connected to keydown (prevent double dash '--') and keyup (clear non-digits).
           this.addDash();
 
           var zipcode = this.newPerson.zipcode;
           var len = this.newPerson.zipcode.length;
 
-
-          // if index != 5 then remove non-digit characters. 0-9 /^[0-9]$/.test(character);
-          // if index == 5 then character must be a dash '-' (addDash() must work log error).
           if(len > 0) {
             // Loop through all characters of postalcode.
             for( var i = 0; i < len; i++) {
@@ -274,6 +272,7 @@
                   }
               }
               else {
+                  // This character must be a dash and addDash() is responsible.
                   if(character != '-') {
                     console.error('addDash() failed.')
                   }
