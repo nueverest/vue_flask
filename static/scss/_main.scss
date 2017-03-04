@@ -60,6 +60,7 @@ input[type="date"]:focus {
     vertical-align: middle;
 }
 
+/* Transformations */
 .rotate-m15 {
   -webkit-transform: rotate(-15deg);
   -moz-transform: rotate(-15deg);
@@ -74,4 +75,8 @@ input[type="date"]:focus {
   -o-transform: rotate(-30deg);
   -ms-transform: rotate(-30deg);
   transform: rotate(-30deg);
+}
+
+.engrave-hfef9cf {
+  text-shadow: 0px 1px 0px rgba(254,248,207,1);
 }

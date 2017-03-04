@@ -21,6 +21,7 @@ __pycache__/
 .Python
 
 env/
+archive/
 *archive/
 archive/0.2.9/build/
 develop-eggs/

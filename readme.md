@@ -39,6 +39,32 @@ semi-colon to a file requires the full project to be uploaded.  Projects take mi
 # Change Flask-S3 Config in vue_flask.py
 - app.config['FLASKS3_BUCKET_NAME'] = 'your_s3_bucket_name_here'
 
+# How to Deploy using Zappa - Serverless.
+- Create and Activate a virtual environment for this project. Reference: https://virtualenv.pypa.io/en/stable/installation/
+- `pip install requirements.txt`
+- Place aws credentials with correct permissions in `<path to user folder>\.aws\credentials` Reference: https://github.com/Miserlou/Zappa/issues/244
+- Open zappa_settings.json and change "s3_bucket" and "aws_region" to match your AWS account.
+- `zappa deploy production`
+- Navigate to generated url.
+
+# How to Update Deployment
+- `zappa update production`
+
+# How to Undeploy
+- `zappa undeploy production`
+
+# Helpful notes about deployment.
+- Combine, minify, and gzip CSS files. 
+- Combine, minify, and gzip JS files.
+- You can use `gzip -9 filename.css`. The `-9` provides the best compression.
+- Zopfli https://github.com/obp/zopfli developed by Google is more powerful and may one day be integrated with this project.
+- Upload these two files to S3 and make the files public http://www.rightbrainnetworks.com/blog/serving-compressed-gzipped-static-files-from-amazon-s3-or-cloudfront/
+- AWS Cloudfront is a CDN that can be linked to your S3 bucket. A Content Delivery Network (CDN) places the data closer to the end user by storing your files all over the world.
+- Enable file Caching so that browsers do not need to download the files every time the page loads. https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching#defining-optimal-cache-control-policy
+- Check your site speed with pingdom or other service https://tools.pingdom.com/#!/c1UXFm/https://kw4udfbos9.execute-api.us-west-2.amazonaws.com/production
+
+# Development
+
 # Prerequisite for npm powered automation
 - Install node package manager (npm) on your machine.
 - Place npm on the system path.
@@ -78,30 +104,6 @@ semi-colon to a file requires the full project to be uploaded.  Projects take mi
 - An executable file named `zopfli` (linux) or `zopfli.exe` (windows) should now appear in your folder.
 - Setup two Custom File Watchers with zopfli for CSS and JS.  Use combined.min.css and combined.js (production) 
 - Configuring File Watcher output path http://stackoverflow.com/a/36038914/1783439
-
-# How to Deploy using Zappa - Serverless.
-- Create and Activate a virtual environment for this project. Reference: https://virtualenv.pypa.io/en/stable/installation/
-- `pip install requirements.txt`
-- Place aws credentials with correct permissions in `<path to user folder>\.aws\credentials` Reference: https://github.com/Miserlou/Zappa/issues/244
-- Open zappa_settings.json and change "s3_bucket" and "aws_region" to match your AWS account.
-- `zappa deploy production`
-- Navigate to generated url.
-
-# How to Update Deployment
-- `zappa update production`
-
-# How to Undeploy
-- `zappa undeploy production`
-
-# Helpful notes about deployment.
-- Combine, minify, and gzip CSS files. 
-- Combine, minify, and gzip JS files.
-- You can use `gzip -9 filename.css`. The `-9` provides the best compression.
-- Zopfli https://github.com/obp/zopfli developed by Google is more powerful and may one day be integrated with this project.
-- Upload these two files to S3 and make the files public http://www.rightbrainnetworks.com/blog/serving-compressed-gzipped-static-files-from-amazon-s3-or-cloudfront/
-- AWS Cloudfront is a CDN that can be linked to your S3 bucket. A Content Delivery Network (CDN) places the data closer to the end user by storing your files all over the world.
-- Enable file Caching so that browsers do not need to download the files every time the page loads. https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching#defining-optimal-cache-control-policy
-- Check your site speed with pingdom or other service https://tools.pingdom.com/#!/c1UXFm/https://kw4udfbos9.execute-api.us-west-2.amazonaws.com/production
 
 # Testing with Flask-Testing, Selenium, Google chromedriver, Mozilla geckodriver
 - `pip install selenium`

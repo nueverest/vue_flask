@@ -105,6 +105,10 @@ project_directory = path.join(cwd, 'templates')
 css_directory = path.join(cwd, 'static', 'scss')
 docs_directory = path.join(cwd, 'docs')
 
+# Output File
+output_file_name = '_blowdry'
+output_extension = '.scss'
+
 # Logging
 logging_enabled = False
 logging_level = DEBUG                                       # Allowed: DEBUG, INFO, WARNING, ERROR, CRITICAL

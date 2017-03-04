@@ -1,83 +1,59 @@
-.margin-bottom-10 {
-    margin-bottom: 0.625rem
-    }
-.font-size-18 {
-    font-size: 1.125rem
-    }
-.margin-top-35 {
-    margin-top: 2.1875rem
-    }
-.white {
-    color: white
-    }
-.font-size-18-i {
-    font-size: 1.125rem !important
-    }
-.padding-20 {
-    padding: 1.25rem
-    }
-.bgc-hf2f2f2 {
-    background-color: #f2f2f2
-    }
-.black {
-    color: black
-    }
-.padding-bottom-30 {
-    padding-bottom: 1.875rem
-    }
-.margin-20-0-30-0 {
-    margin: 1.25rem 0rem 1.875rem 0rem
-    }
-.padding-top-20 {
-    padding-top: 1.25rem
-    }
 .float-right {
     float: right
     }
-.hb85276 {
-    color: #b85276
-    }
-.margin-top-15 {
-    margin-top: 0.9375rem
-    }
-.h4b4513 {
-    color: #4b4513
-    }
-.margin-top-20 {
-    margin-top: 1.25rem
-    }
-.border-radius-3 {
-    border-radius: 0.1875rem
-    }
-.margin-top-10 {
-    margin-top: 0.625rem
-    }
-.line-height-2rem {
-    line-height: 2rem
+.width-93p {
+    width: 93%
     }
 .bgc-h31466e {
     background-color: #31466e
     }
-.margin-top-69 {
-    margin-top: 4.3125rem
+.margin-top-15 {
+    margin-top: 0.9375rem
     }
-.bgc-h5276b8 {
-    background-color: #5276b8
+.font-size-1 {
+    font-size: 0.0625rem
     }
-.margin-top-16 {
-    margin-top: 1rem
+.padding-top-20 {
+    padding-top: 1.25rem
+    }
+.padding-bottom-30 {
+    padding-bottom: 1.875rem
+    }
+.margin-top-148 {
+    margin-top: 9.25rem
     }
 .margin-0-auto {
     margin: 0rem auto
     }
-.text-align-center {
-    text-align: center
+.margin-top-10 {
+    margin-top: 0.625rem
+    }
+.font-size-48-i {
+    font-size: 3rem !important
     }
 .bgc-black {
     background-color: black
     }
-.font-size-48-i {
-    font-size: 3rem !important
+.margin-top-69 {
+    margin-top: 4.3125rem
+    }
+.text-align-center {
+    text-align: center
+    }
+.bgc-hf2f2f2 {
+    background-color: #f2f2f2
+    }
+.white {
+    color: white
+    }
+.bgc-h76b852 {
+    background-color: #76b852
+    }
+.border-radius-3 {
+    border-radius: 0.1875rem
+    }
+.font-size-36-i {
+    font-size: 2.25rem !important
     }
 .bold {
     font-weight: bold
@@ -85,38 +61,62 @@
 .bgc-white {
     background-color: white
     }
-.font-size-1 {
-    font-size: 0.0625rem
+.line-height-2rem {
+    line-height: 2rem
     }
-.bgc-hfde942 {
-    background-color: #fde942
+.bgc-h5276b8 {
+    background-color: #5276b8
     }
-.max-width-100p {
-    max-width: 100%
+.margin-20-0-30-0 {
+    margin: 1.25rem 0rem 1.875rem 0rem
     }
-.cursor-pointer {
-    cursor: pointer
+.margin-top-35 {
+    margin-top: 2.1875rem
     }
-.bgc-h52a9b8 {
-    background-color: #52a9b8
+.black {
+    color: black
     }
-.width-93p {
-    width: 93%
+.margin-bottom-10 {
+    margin-bottom: 0.625rem
     }
-.margin-top-148 {
-    margin-top: 9.25rem
+.font-size-18 {
+    font-size: 1.125rem
+    }
+.padding-20 {
+    padding: 1.25rem
+    }
+.hb85276 {
+    color: #b85276
     }
 .line-height-9 {
     line-height: 0.5625rem
     }
-.bgc-h76b852 {
-    background-color: #76b852
-    }
-.font-size-36-i {
-    font-size: 2.25rem !important
+.bgc-hfde942 {
+    background-color: #fde942
     }
 .border-radius-5 {
     border-radius: 0.3125rem
+    }
+.cursor-pointer {
+    cursor: pointer
+    }
+.h4b4513 {
+    color: #4b4513
+    }
+.margin-top-16 {
+    margin-top: 1rem
+    }
+.font-size-18-i {
+    font-size: 1.125rem !important
+    }
+.max-width-100p {
+    max-width: 100%
+    }
+.bgc-h52a9b8 {
+    background-color: #52a9b8
+    }
+.margin-top-20 {
+    margin-top: 1.25rem
     }
 .padding-16-s-i {
     padding: 1rem !important
@@ -159,8 +159,32 @@
         font-size: 1rem
         }
     }
+.font-size-55-s {
+    font-size: 3.4375rem
+    }
+@media only screen and (max-width: 64rem) {
+    .font-size-55-s {
+        font-size: 3.2958rem
+        }
+    }
+@media only screen and (max-width: 45rem) {
+    .font-size-55-s {
+        font-size: 3.0556rem
+        }
+    }
+@media only screen and (max-width: 30rem) {
+    .font-size-55-s {
+        font-size: 2.75rem
+        }
+    }
 @media only screen and (max-width: 45.0625rem) {
     .display-large-up {
         display: none
         }
+    }
+.font-size-60-i {
+    font-size: 3.75rem !important
+    }
+.green {
+    color: green
     }
