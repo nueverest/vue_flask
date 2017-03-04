@@ -14,13 +14,13 @@
 </head>
 <body class="bgc-hf2f2f2">
   <div id="app">
-    <div class="row green inner-shadow">
-      <div class="small-12 columns bgc-hfde942 h4b4513 text-align-center">
-        <span class="engrave-hfef9cf font-size-55-s margin-20-0-30-0"><i class="material-icons font-size-60-i">&#xE8BF;</i> Person Creation Machine</span>
+    <div class="row inner-shadow">
+      <div class="small-12 columns bgc-hfde942 h4b4513 text-align-center engrave-hfef9cf bold">
+        <div class="font-size-40-s margin-15-0-20-0"><i class="material-icons font-size-55-i">&#xE8BF;</i> Person Creation Machine</div>
       </div>
 
       <div class="small-12 medium-6 large-4 columns bgc-h76b852 same-height">
-        <h3 class="text-align-center white margin-top-20">Create a Person <i class="material-icons font-size-36-i">&#xE84E;</i></h3>
+        <div class="text-align-center font-size-32-s white margin-top-20">Create a Person <i class="material-icons font-size-36-i">&#xE84E;</i></div>
 
         <div class="row">
           <div class="small-11 columns small-centered margin-top-20">
@@ -78,7 +78,7 @@
       </div>
 
       <div class="small-12 medium-6 large-8 columns bgc-h5276b8 white same-height">
-        <h3 class="text-align-center white margin-top-20">People Created</h3>
+        <div class="text-align-center font-size-32-s white margin-top-20-i">People Created</div>
         <h6 class="text-align-center white margin-top-10">
           <i class="material-icons">&#xE7FB;</i> Total Population:
           <span id="{[ input_id['population'] ]}">{{ persons.length }}</span>
@@ -103,7 +103,7 @@
                 <div class="row font-size-18 line-height-2rem padding-bottom-30" v-if="persons.length <= 0">
                   <div class="small-12 columns text-align-center">
                     <p class="bold margin-top-16">No people exist.</p>
-                    <i class="material-icons bold hb85276">&#xE5C4;</i> Use the form on the left to add people.
+                    <i class="material-icons bold hb85276 display-large-up-i">&#xE5C4;</i> Use the form on the left to add people.
                   </div>
                 </div>
               </div>
@@ -114,7 +114,7 @@
     </div>
 
     <div class="row margin-top-69">
-      <h3 class="text-align-center"><i class="material-icons rotate-m15 font-size-48-i">&#xE85E;</i> Population Table</h3>
+      <div class="text-align-center font-size-36-s"><i class="material-icons rotate-m15 font-size-48-i">&#xE85E;</i> Population Table</div>
       <div class="small-11 large-9 columns small-centered box-shadow bgc-white black margin-top-20">
         <div class="row">
           <div class="small-12 columns">
@@ -137,7 +137,7 @@
             <div class="row font-size-18 line-height-2rem padding-bottom-30" v-if="persons.length <= 0">
               <div class="small-12 columns text-align-center">
                 <p class="bold margin-top-16">No people exist.</p>
-                <i class="material-icons bold hb85276 font-size-36-i rotate-m30">&#xE5D8;</i> Use the form on the top-left to add people.
+                <i class="material-icons bold hb85276 font-size-36-i rotate-m30 display-large-up-i">&#xE5D8;</i> Use the form on the top-left to add people.
               </div>
             </div>
           </div>
