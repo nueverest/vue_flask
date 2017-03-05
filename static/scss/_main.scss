@@ -116,6 +116,12 @@ $rip1: $rip4 / 1.8;
                0 0 0 0 transparent,
                0 0 0 0 transparent;
   }
+  15% {
+    box-shadow:0 0 0 0 $highlight-color,
+               0 0 0 0 $base-color,
+               0 0 0 0 $highlight-color,
+               0 0 0 0 $base-color;
+  }
   100% {
     box-shadow:0 0 30px #{$rip1}px $highlight-color,
                0 0 0.3px #{$rip2}px $base-color,
@@ -130,6 +136,12 @@ $rip1: $rip4 / 1.8;
                0 0 0 0 transparent,
                0 0 0 0 transparent,
                0 0 0 0 transparent;
+  }
+  15% {
+    box-shadow:0 0 0 0 $highlight-color,
+               0 0 0 0 $base-color,
+               0 0 0 0 $highlight-color,
+               0 0 0 0 $base-color;
   }
   100% {
     box-shadow:0 0 30px #{$rip1}px $highlight-color,
@@ -164,6 +176,12 @@ $rip1: $rip4 / 1.8;
                0 0 0 0 transparent,
                0 0 0 0 transparent;
   }
+  15% {
+    box-shadow:0 0 0 0 $highlight-color,
+               0 0 0 0 $base-color,
+               0 0 0 0 $highlight-color,
+               0 0 0 0 $base-color;
+  }
   100% {
     box-shadow:0 0 30px #{$rip1}px $highlight-color,
                0 0 0.3px #{$rip2}px $base-color,
@@ -178,6 +196,12 @@ $rip1: $rip4 / 1.8;
                0 0 0 0 transparent,
                0 0 0 0 transparent,
                0 0 0 0 transparent;
+  }
+  15% {
+    box-shadow:0 0 0 0 $highlight-color,
+               0 0 0 0 $base-color,
+               0 0 0 0 $highlight-color,
+               0 0 0 0 $base-color;
   }
   100% {
     box-shadow:0 0 30px #{$rip1}px $highlight-color,
