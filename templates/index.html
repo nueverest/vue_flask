@@ -79,10 +79,12 @@
 
       <div class="small-12 medium-6 large-8 columns bgc-h5276b8 white same-height">
         <div class="text-align-center font-size-32-s white margin-top-20-i">People Created</div>
-        <h6 class="text-align-center white margin-top-10">
+        <div class="text-align-center font-size-14 white margin-top-10">
           <i class="material-icons">&#xE7FB;</i> Total Population:
-          <span id="{[ input_id['population'] ]}">{{ persons.length }}</span>
-        </h6>
+          <div class="inline-block position-relative margin-left-7 font-size-16 bold">
+            <span id="{[ input_id['population'] ]}" v-bind:class="ripple" v-bind:ripple="currentripple">{{ persons.length }}</span>
+          </div>
+        </div>
 
         <div class="row padding-top-20">
           <div class="small-11 medium-10 large-6 columns small-centered box-shadow bgc-white black border-radius-3">
@@ -189,6 +191,7 @@
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             this.user = user;
+
             this.$bindAsArray('persons', db.ref('persons'));              // https://github.com/vuejs/vuefire/blob/master/src/vuefire.js#L169
             //console.log('user logged in: ', user);
           }
@@ -201,6 +204,8 @@
       // Initialize reactive props, bind later when user is available
       data: {
         user: {},
+        currentpopulation: 0,
+        currentripple: '',
         persons: [],
         newPerson: {
           firstname: '',
@@ -220,12 +225,12 @@
                 dob: this.newPerson.dob,
                 age: this.personsAge(this.newPerson.dob),
                 zipcode: this.newPerson.zipcode,
-                uid: this.user.uid                          // ID of anonymous user that input data.
+                uid: this.user.uid                                      // ID of anonymous user that input data.
               })
             }
         },
         removePerson: function(person) {
-            this.$firebaseRefs.persons.child(person['.key']).remove();    // https://firebase.google.com/docs/reference/js/firebase.database.Reference#remove
+            this.$firebaseRefs.persons.child(person['.key']).remove();  // https://firebase.google.com/docs/reference/js/firebase.database.Reference#remove
         },
         personsAge: function(dateString) {
           // Fastest JS age calculator http://jsperf.com/birthday-calculation/15
@@ -302,10 +307,36 @@
           }
         },
         isValid: function () {
-          var validation = this.validation
+          var validation = this.validation;
           return Object.keys(validation).every(function (key) {
             return validation[key]
           })
+        },
+        ripple: function () {
+          if(this.persons !== undefined ) {
+            console.log('current ' + this.currentpopulation)
+            console.log('new ' + this.persons.length)
+            //console.log(typeof(this.persons.length))
+            if(this.currentpopulation !== this.persons.length) {
+              this.currentpopulation = this.persons.length
+
+              if (this.currentripple === 'ripple1') {
+                this.currentripple = 'ripple2'
+                return 'ripple2'
+              }
+              else {
+                this.currentripple = 'ripple1'
+                return 'ripple1'
+              }
+            }
+            else {
+              this.currentripple = ''
+              return ''
+            }
+          }
+
+          this.currentripple = ''
+          return ''
         }
       }
     })

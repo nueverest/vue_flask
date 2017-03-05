@@ -78,5 +78,68 @@ input[type="date"]:focus {
 }
 
 .engrave-hfef9cf {
-  text-shadow: 0px 1px 0px rgba(254,248,207,1);
+  text-shadow: 0 1px 0 rgba(254,248,207,1);
+}
+
+/* Ripple Effect used to indicate population change. Reference: http://codepen.io/daless14/pen/ELFgj
+   :after and :before are the key to allowing the toggled classes to trigger the animation when they are added
+   to the element.
+ */
+.ripple1:after, .ripple2:before {
+  display:inline-block;
+  border-radius:3px;
+  width:3px;
+  height:3px;
+  opacity:0.125;
+  -webkit-animation:rip 1s ease-out;    /* 1s infinite ease-out */
+  -moz-animation:rip 1s ease-out;
+}
+.ripple1:after, .ripple2:before {
+  content:'';
+  position: absolute;
+  top:43%;
+  left:43%;
+}
+
+@-webkit-keyframes rip
+{
+  0%  {
+    box-shadow:0 0 0 0 transparent,
+               0 0 0 0 transparent,
+               0 0 0 0 transparent,
+               0 0 0 0 transparent;
+  }
+  15%  {
+    box-shadow:0 0 0 0 #fff,
+               0 0 0 0 #000,
+               0 0 0 0 #fff,
+               0 0 0 0 #000;
+  }
+  100% {
+    box-shadow:0 0 30px 10px #fff,
+               0 0 0.3px 12px #000,
+               0 0 5px 14px #fff,
+               0 0 1.75px 18px #000;
+  }
+}
+@-moz-keyframes rip
+{
+  0%  {
+    box-shadow:0 0 0 0 transparent,
+               0 0 0 0 transparent,
+               0 0 0 0 transparent,
+               0 0 0 0 transparent;
+  }
+  15%  {
+    box-shadow:0 0 0 0 #fff,
+               0 0 0 0 #000,
+               0 0 0 0 #fff,
+               0 0 0 0 #000;
+  }
+  100% {
+    box-shadow:0 0 30px 10px #fff,
+               0 0 0.3px 12px #000,
+               0 0 5px 14px #fff,
+               0 0 1.75px 18px #000;
+  }
 }
