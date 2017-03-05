@@ -314,9 +314,6 @@
         },
         ripple: function () {
           if(this.persons !== undefined ) {
-            console.log('current ' + this.currentpopulation)
-            console.log('new ' + this.persons.length)
-            //console.log(typeof(this.persons.length))
             if(this.currentpopulation !== this.persons.length) {
               this.currentpopulation = this.persons.length
 
@@ -328,10 +325,6 @@
                 this.currentripple = 'ripple1'
                 return 'ripple1'
               }
-            }
-            else {
-              this.currentripple = ''
-              return ''
             }
           }
 
