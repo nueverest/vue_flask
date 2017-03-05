@@ -315,19 +315,24 @@
         ripple: function () {
           if(this.persons !== undefined ) {
             if(this.currentpopulation !== this.persons.length) {
+              var rippledirection = 'out'
+
+              if(this.currentpopulation > this.persons.length) {
+                rippledirection = 'in'
+              }
+
               this.currentpopulation = this.persons.length
 
-              if (this.currentripple === 'ripple1') {
-                this.currentripple = 'ripple2'
-                return 'ripple2'
+              if (this.currentripple === 'ripple1-' + rippledirection) {
+                this.currentripple = 'ripple2-' + rippledirection
+                return 'ripple2-' + rippledirection
               }
               else {
-                this.currentripple = 'ripple1'
-                return 'ripple1'
+                this.currentripple = 'ripple1-' + rippledirection
+                return 'ripple1-' + rippledirection
               }
             }
           }
-
           this.currentripple = ''
           return ''
         }

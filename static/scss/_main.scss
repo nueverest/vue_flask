@@ -85,23 +85,78 @@ input[type="date"]:focus {
    :after and :before are the key to allowing the toggled classes to trigger the animation when they are added
    to the element.
  */
-.ripple1:after, .ripple2:before {
+$base-color: #000;
+$highlight-color: #fff;
+$rip4: 28;
+$rip3: $rip4 / 1.285;
+$rip2: $rip4 / 1.5;
+$rip1: $rip4 / 1.8;
+
+/* Create person case - Ripple Out */
+.ripple1-out:after, .ripple2-out:before {
   display:inline-block;
   border-radius:3px;
   width:3px;
   height:3px;
   opacity:0.125;
-  -webkit-animation:rip 1s ease-out;    /* 1s infinite ease-out */
-  -moz-animation:rip 1s ease-out;
+  -webkit-animation:ripple-out 1s ease-out;    /* 1s infinite ease-out */
+  -moz-animation:ripple-out 1s ease-out;
 }
-.ripple1:after, .ripple2:before {
+.ripple1-out:after, .ripple2-out:before {
   content:'';
   position: absolute;
   top:43%;
-  left:43%;
+  left:50%;
+}
+@-webkit-keyframes ripple-out
+{
+  0%  {
+    box-shadow:0 0 0 0 transparent,
+               0 0 0 0 transparent,
+               0 0 0 0 transparent,
+               0 0 0 0 transparent;
+  }
+  100% {
+    box-shadow:0 0 30px #{$rip1}px $highlight-color,
+               0 0 0.3px #{$rip2}px $base-color,
+               0 0 5px #{$rip3}px $highlight-color,
+               0 0 1.75px #{$rip4}px $base-color;
+  }
+}
+@-moz-keyframes ripple-out
+{
+  0%  {
+    box-shadow:0 0 0 0 transparent,
+               0 0 0 0 transparent,
+               0 0 0 0 transparent,
+               0 0 0 0 transparent;
+  }
+  100% {
+    box-shadow:0 0 30px #{$rip1}px $highlight-color,
+               0 0 0.3px #{$rip2}px $base-color,
+               0 0 5px #{$rip3}px $highlight-color,
+               0 0 1.75px #{$rip4}px $base-color;
+  }
 }
 
-@-webkit-keyframes rip
+/* Remove person case - Ripple In */
+.ripple1-in:after, .ripple2-in:before {
+  display:inline-block;
+  border-radius:3px;
+  width:3px;
+  height:3px;
+  opacity:0.125;
+
+  -webkit-animation:ripple-in 1s ease-out;    /* 1s infinite ease-out */
+  -moz-animation:ripple-in 1s ease-out;
+}
+.ripple1-in:after, .ripple2-in:before {
+  content:'';
+  position: absolute;
+  top:43%;
+  left:50%;
+}
+@-webkit-keyframes ripple-in
 {
   0%  {
     box-shadow:0 0 0 0 transparent,
@@ -109,20 +164,14 @@ input[type="date"]:focus {
                0 0 0 0 transparent,
                0 0 0 0 transparent;
   }
-  15%  {
-    box-shadow:0 0 0 0 #fff,
-               0 0 0 0 #000,
-               0 0 0 0 #fff,
-               0 0 0 0 #000;
-  }
   100% {
-    box-shadow:0 0 30px 10px #fff,
-               0 0 0.3px 12px #000,
-               0 0 5px 14px #fff,
-               0 0 1.75px 18px #000;
+    box-shadow:0 0 30px #{$rip1}px $highlight-color,
+               0 0 0.3px #{$rip2}px $base-color,
+               0 0 5px #{$rip3}px $highlight-color,
+               0 0 1.75px #{$rip4}px $base-color;
   }
 }
-@-moz-keyframes rip
+@-moz-keyframes ripple-in
 {
   0%  {
     box-shadow:0 0 0 0 transparent,
@@ -130,16 +179,10 @@ input[type="date"]:focus {
                0 0 0 0 transparent,
                0 0 0 0 transparent;
   }
-  15%  {
-    box-shadow:0 0 0 0 #fff,
-               0 0 0 0 #000,
-               0 0 0 0 #fff,
-               0 0 0 0 #000;
-  }
   100% {
-    box-shadow:0 0 30px 10px #fff,
-               0 0 0.3px 12px #000,
-               0 0 5px 14px #fff,
-               0 0 1.75px 18px #000;
+    box-shadow:0 0 30px #{$rip1}px $highlight-color,
+               0 0 0.3px #{$rip2}px $base-color,
+               0 0 5px #{$rip3}px $highlight-color,
+               0 0 1.75px #{$rip4}px $base-color;
   }
 }

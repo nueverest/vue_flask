@@ -2984,110 +2984,86 @@ input[type="date"]:focus {
    :after and :before are the key to allowing the toggled classes to trigger the animation when they are added
    to the element.
  */
-.ripple1:after, .ripple2:before {
+/* Create person case - Ripple Out */
+.ripple1-out:after, .ripple2-out:before {
   display: inline-block;
   border-radius: 3px;
   width: 3px;
   height: 3px;
   opacity: 0.125;
-  -webkit-animation: rip 1s ease-out;
+  -webkit-animation: ripple-out 1s ease-out;
   /* 1s infinite ease-out */
-  -moz-animation: rip 1s ease-out; }
+  -moz-animation: ripple-out 1s ease-out; }
 
-.ripple1:after, .ripple2:before {
+.ripple1-out:after, .ripple2-out:before {
   content: '';
   position: absolute;
   top: 43%;
-  left: 43%; }
+  left: 50%; }
 
-@-webkit-keyframes rip {
+@-webkit-keyframes ripple-out {
   0% {
     box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent; }
-  15% {
-    box-shadow: 0 0 0 0 #fff, 0 0 0 0 #000, 0 0 0 0 #fff, 0 0 0 0 #000; }
   100% {
-    box-shadow: 0 0 30px 10px #fff, 0 0 0.3px 12px #000, 0 0 5px 14px #fff, 0 0 1.75px 18px #000; } }
-@-moz-keyframes rip {
+    box-shadow: 0 0 30px 15.55556px #fff, 0 0 0.3px 18.66667px #000, 0 0 5px 21.78988px #fff, 0 0 1.75px 28px #000; } }
+@-moz-keyframes ripple-out {
   0% {
     box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent; }
-  15% {
-    box-shadow: 0 0 0 0 #fff, 0 0 0 0 #000, 0 0 0 0 #fff, 0 0 0 0 #000; }
   100% {
-    box-shadow: 0 0 30px 10px #fff, 0 0 0.3px 12px #000, 0 0 5px 14px #fff, 0 0 1.75px 18px #000; } }
-.bgc-hfde942 {
-  background-color: #fde942; }
+    box-shadow: 0 0 30px 15.55556px #fff, 0 0 0.3px 18.66667px #000, 0 0 5px 21.78988px #fff, 0 0 1.75px 28px #000; } }
+/* Remove person case - Ripple In */
+.ripple1-in:after, .ripple2-in:before {
+  display: inline-block;
+  border-radius: 3px;
+  width: 3px;
+  height: 3px;
+  opacity: 0.125;
+  -webkit-animation: ripple-in 1s ease-out;
+  /* 1s infinite ease-out */
+  -moz-animation: ripple-in 1s ease-out; }
 
-.font-size-55-i {
-  font-size: 3.4375rem !important; }
+.ripple1-in:after, .ripple2-in:before {
+  content: '';
+  position: absolute;
+  top: 43%;
+  left: 50%; }
 
-.inline-block {
-  display: inline-block; }
-
-.border-radius-5 {
-  border-radius: 0.3125rem; }
-
-.bgc-h31466e {
-  background-color: #31466e; }
-
-.margin-left-7 {
-  margin-left: 0.4375rem; }
+@-webkit-keyframes ripple-in {
+  0% {
+    box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent; }
+  100% {
+    box-shadow: 0 0 30px 15.55556px #fff, 0 0 0.3px 18.66667px #000, 0 0 5px 21.78988px #fff, 0 0 1.75px 28px #000; } }
+@-moz-keyframes ripple-in {
+  0% {
+    box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent; }
+  100% {
+    box-shadow: 0 0 30px 15.55556px #fff, 0 0 0.3px 18.66667px #000, 0 0 5px 21.78988px #fff, 0 0 1.75px 28px #000; } }
+.font-size-48-i {
+  font-size: 3rem !important; }
 
 .bgc-h52a9b8 {
   background-color: #52a9b8; }
 
-.line-height-9 {
-  line-height: 0.5625rem; }
-
-.text-align-center {
-  text-align: center; }
-
-.bold {
-  font-weight: bold; }
-
-.font-size-16 {
-  font-size: 1rem; }
-
-.white {
-  color: white; }
+.margin-top-148 {
+  margin-top: 9.25rem; }
 
 .bgc-h5276b8 {
   background-color: #5276b8; }
 
-.margin-top-15 {
-  margin-top: 0.9375rem; }
+.bgc-h31466e {
+  background-color: #31466e; }
 
-.font-size-14 {
-  font-size: 0.875rem; }
+.margin-15-0-20-0 {
+  margin: 0.9375rem 0rem 1.25rem 0rem; }
 
-.bgc-white {
-  background-color: white; }
+.margin-0-auto {
+  margin: 0rem auto; }
 
-.padding-top-20 {
-  padding-top: 1.25rem; }
-
-.position-relative {
-  position: relative; }
-
-.h4b4513 {
-  color: #4b4513; }
-
-.line-height-2rem {
-  line-height: 2rem; }
-
-.hb85276 {
-  color: #b85276; }
-
-.font-size-1 {
-  font-size: 0.0625rem; }
+.bold {
+  font-weight: bold; }
 
 .width-93p {
   width: 93%; }
-
-.margin-top-10 {
-  margin-top: 0.625rem; }
-
-.max-width-100p {
-  max-width: 100%; }
 
 .border-radius-3 {
   border-radius: 0.1875rem; }
@@ -3095,65 +3071,113 @@ input[type="date"]:focus {
 .font-size-18 {
   font-size: 1.125rem; }
 
-.font-size-18-i {
-  font-size: 1.125rem !important; }
+.cursor-pointer {
+  cursor: pointer; }
+
+.hb85276 {
+  color: #b85276; }
+
+.margin-top-15 {
+  margin-top: 0.9375rem; }
 
 .margin-top-20 {
   margin-top: 1.25rem; }
 
-.margin-15-0-20-0 {
-  margin: 0.9375rem 0rem 1.25rem 0rem; }
+.bgc-h76b852 {
+  background-color: #76b852; }
 
-.margin-top-69 {
-  margin-top: 4.3125rem; }
-
-.cursor-pointer {
-  cursor: pointer; }
-
-.margin-0-auto {
-  margin: 0rem auto; }
+.line-height-2rem {
+  line-height: 2rem; }
 
 .margin-top-35 {
   margin-top: 2.1875rem; }
 
-.black {
-  color: black; }
-
-.bgc-black {
-  background-color: black; }
-
-.bgc-hf2f2f2 {
-  background-color: #f2f2f2; }
-
-.margin-top-148 {
-  margin-top: 9.25rem; }
-
-.font-size-36-i {
-  font-size: 2.25rem !important; }
+.padding-top-20 {
+  padding-top: 1.25rem; }
 
 .margin-top-16 {
   margin-top: 1rem; }
 
+.margin-bottom-10 {
+  margin-bottom: 0.625rem; }
+
+.font-size-36-i {
+  font-size: 2.25rem !important; }
+
 .margin-top-20-i {
   margin-top: 1.25rem !important; }
 
-.bgc-h76b852 {
-  background-color: #76b852; }
+.margin-top-69 {
+  margin-top: 4.3125rem; }
+
+.position-relative {
+  position: relative; }
+
+.font-size-1 {
+  font-size: 0.0625rem; }
 
 .padding-bottom-30 {
   padding-bottom: 1.875rem; }
 
-.padding-20 {
-  padding: 1.25rem; }
+.h4b4513 {
+  color: #4b4513; }
 
-.font-size-48-i {
-  font-size: 3rem !important; }
+.font-size-18-i {
+  font-size: 1.125rem !important; }
 
-.margin-bottom-10 {
-  margin-bottom: 0.625rem; }
+.font-size-55-i {
+  font-size: 3.4375rem !important; }
+
+.margin-top-10 {
+  margin-top: 0.625rem; }
+
+.bgc-hf2f2f2 {
+  background-color: #f2f2f2; }
+
+.bgc-black {
+  background-color: black; }
+
+.bgc-hfde942 {
+  background-color: #fde942; }
+
+.font-size-16 {
+  font-size: 1rem; }
+
+.white {
+  color: white; }
+
+.max-width-100p {
+  max-width: 100%; }
+
+.black {
+  color: black; }
+
+.inline-block {
+  display: inline-block; }
+
+.margin-left-7 {
+  margin-left: 0.4375rem; }
+
+.font-size-14 {
+  font-size: 0.875rem; }
 
 .float-right {
   float: right; }
+
+.text-align-center {
+  text-align: center; }
+
+.line-height-9 {
+  line-height: 0.5625rem; }
+
+.border-radius-5 {
+  border-radius: 0.3125rem; }
+
+.padding-20 {
+  padding: 1.25rem; }
+
+.bgc-white {
+  background-color: white; }
 
 .padding-16-s-i {
   padding: 1rem !important; }
