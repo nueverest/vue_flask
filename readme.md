@@ -11,7 +11,7 @@ Serverless operations do use a server, but it only runs 20-60 milliseconds at a 
 
 # Disadvantage of Serverless
 - Deployment and Update actions require the entire project to be uploaded. Even a tiny change such as adding one 
-semi-colon to a file requires the full project to be uploaded.  Projects take minutes to upload.
+character to a file requires the full project to be uploaded.  Projects take minutes to upload.
 
 # Technologies Used
 - Vue.js - Frontend Javascript Framework https://vuejs.org/
@@ -22,12 +22,31 @@ semi-colon to a file requires the full project to be uploaded.  Projects take mi
 - Zurb Foundation 6 - CSS Frontend Framework http://foundation.zurb.com/
 - Blowdrycss - Python Atomic CSS compiler https://github.com/nueverest/blowdrycss
 - Google Material Icons - Icons that behave like fonts https://google.github.io/material-design-icons/
+- SCSS - Sassy CSS a superset of CSS3's syntax.
 - Zappa - Python serverless deployment interface https://github.com/Miserlou/Zappa
 - Amazon Web Services (AWS) - Cloud Infrastructure - S3, Lambda, API Gateway, CloudWatch, IAM https://aws.amazon.com/
 
 # Requirements
 - Python 2.7.x (Zappa will NOT work with Python 3.x because AWS Lambda is only 2.7.x compatible.)
 - See requirements.txt
+
+# How to Setup blowdrycss
+- Activate project virtual environment
+- `pip install blowdrycss`
+- Navigate to project folder.
+- Run `blowdrycss`
+- Open the newly created blowdrycss_settings.py file.
+- Change the following variable to match these values:
+- project_directory = path.join(cwd, 'templates')
+- css_directory = path.join(cwd, 'static', 'scss')
+- output_file_name = '_blowdry'
+- output_extension = '.scss'
+- auto_generate = True            
+- human_readable = True           
+- minify = False
+- Go to the px_to_em() function
+- Find this line `em = str(em) + 'em'`
+- Change to this `em = str(em) + 'rem'`
 
 # How to Setup Firebase
 - Setup a firebase account.
