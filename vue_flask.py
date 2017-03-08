@@ -59,11 +59,11 @@ def index():
     url_for = {
         'favicon': select_url_for('static', filename='favicon.ico'),
         'combinedcss': select_url_for('static', filename=get_css_filename()),
+        'combinedjs': select_url_for('static', filename=get_js_filename()),
         # 'materialicons': 'https://fonts.googleapis.com/icon?family=Material+Icons',
         # 'vuejs': 'https://unpkg.com/vue@2.0.7/dist/vue.js',
         # 'firebase': 'https://www.gstatic.com/firebasejs/3.6.10/firebase.js',
         # 'vuefire': 'https://unpkg.com/vuefire@1.3.0/dist/vuefire.js',
-        'combinedjs': select_url_for('static', filename=get_js_filename()),
     }
 
     input_id = get_input_id()
@@ -81,7 +81,7 @@ def index():
 
 
 def get_css_filename():
-    return 'css/combined.min.css.gz' if is_production() else 'css/processed/combined.min.css'
+    return 'css/combined1.min.css.gz' if is_production() else 'css/processed/combined.min.css'
 
 
 def get_js_filename():
