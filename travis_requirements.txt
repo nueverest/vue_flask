@@ -1,0 +1,14 @@
+# Python 2.7 Support
+future>=0.16.0
+
+# Flask
+Flask>=0.12
+Flask-S3>=0.3.3
+
+# Tox and Travis Interface
+tox>=2.3.1
+tox-travis>=0.4
+
+# Development
+coverage>=4.3.4
+coveralls>=1.1
