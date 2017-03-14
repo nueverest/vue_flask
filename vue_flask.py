@@ -8,8 +8,13 @@ from flask_s3 import FlaskS3
 from flask_s3 import url_for as s3_url_for
 
 # custom
-from secrets import is_production
 from gzipper import gzipped
+
+# Ignore missing secrets file for Travis CI, and local development.
+try:
+    from secrets import is_production
+except ImportError:
+    pass
 
 
 class CustomFlask(Flask):
