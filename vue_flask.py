@@ -14,7 +14,8 @@ from gzipper import gzipped
 try:
     from secrets import is_production
 except ImportError:
-    pass
+    def is_production():
+        return False
 
 
 class CustomFlask(Flask):
