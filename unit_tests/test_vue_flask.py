@@ -1,10 +1,11 @@
+# python 2
+from builtins import bytes
+
 # builtins
 from unittest import TestCase, main
 
 # plugins
-# import urllib2
 import flask
-# from flask_testing import LiveServerTestCase
 
 # custom
 import vue_flask
@@ -28,7 +29,7 @@ class TestVueFlask(TestCase):
             response = self.go(home)
             self.assertTrue(response.status_code == 200)
             self.assertTrue(flask.request.path == home)
-            self.assertTrue('Person Creation Machine' in response.data, msg=response.data)
+            self.assertTrue(bytes('Person Creation Machine', 'utf-8') in response.data, msg=response.data)
 
     def test_is_production(self):
         with self.app.test_request_context():

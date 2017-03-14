@@ -1,6 +1,5 @@
 # python 2.7
 from __future__ import absolute_import, unicode_literals
-from future.utils import exec_
 from io import open
 
 # builtins
@@ -8,6 +7,7 @@ from setuptools import setup, find_packages     # Always prefer setuptools over 
 
 __author__ = 'chad nelson'
 __project__ = 'vue_flask'
+__version__ = '0.0.1'
 
 # Get readme.rst from sphinx docs (if available).
 try:
@@ -15,13 +15,8 @@ try:
         long_description = f.read()
 except (IOError, ImportError):
     # default description
-    long_description = 'Demonstration of how to integrate many different frontend and backend technologies, and rapidly deploy the app serverlessly via Zappa.'
-
-# Get current version number.
-# http://python-future.org/_modules/future/utils.html#exec_
-version = {}
-with open('version.py') as _file:
-    exec_(_file.read(), version)
+    long_description = 'Demonstration of how to integrate many different frontend and backend technologies, and ' + \
+                       'rapidly deploy the app serverlessly via Zappa.'
 
 setup(
     name='vue_flask',
@@ -29,7 +24,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version=version['__version__'],
+    version=__version__,
 
     description='VueJS, Flask, Zappa serverless deployment demo.',
     long_description=long_description,
@@ -39,7 +34,7 @@ setup(
     download_url='https://github.com/nueverest/vue_flask/',
 
     # Author details
-    author=version['__author__'],
+    author=__author__,
     author_email='nu.everest@gmail.com',
 
     # License
@@ -92,7 +87,7 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=['Flask>=0.12', 'Flask-S3==0.3.3', 'future>=0.16.0', 'blowdrycss>=1.0.2', 'zappa>=0.37.1'],
+    install_requires=['Flask>=0.12', 'Flask-S3==0.3.3', 'future>=0.16.0', 'gzip'],
 
     # List additional groups of dependencies here (e.g. development
     # dependencies). You can install these using the following syntax,
@@ -101,7 +96,7 @@ setup(
     extras_require={
         'testing': ['tox>=2.6.0', 'tox-travis>=0.8', 'coverage>=4.3.4', 'selenium>=3.0.2', ],
         'development': [
-            'tox>=2.6.0', 'tox-travis>=0.8', 'coverage>=4.3.4', 'selenium>=3.0.2',
+            'tox>=2.6.0', 'tox-travis>=0.8', 'coverage>=4.3.4', 'selenium>=3.0.2', 'blowdrycss>=1.0.2', 'zappa>=0.37.1',
         ],
     },
 

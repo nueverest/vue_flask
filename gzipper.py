@@ -1,6 +1,12 @@
-from flask import after_this_request, request
-from cStringIO import StringIO
+# python 2
+from __future__ import absolute_import, print_function, unicode_literals
+
+# builtins
+from io import StringIO
 import gzip
+
+# plugins
+from flask import after_this_request, request
 import functools
 
 
