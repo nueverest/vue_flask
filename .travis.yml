@@ -17,6 +17,7 @@ python:
 install:
   - pip --version
   - pip install -r travis_requirements.txt
+  - pip freeze
 
 # command to run tests
 script:
