@@ -1,0 +1,10 @@
+# Python 2.7 Support
+future>=0.16.0
+
+# Flask
+Flask>=0.12
+Flask-S3>=0.3.3
+
+# Development
+coverage>=4.3.4
+coveralls>=1.1

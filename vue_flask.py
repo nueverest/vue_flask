@@ -1,3 +1,6 @@
+# python 2
+from __future__ import absolute_import, print_function, unicode_literals
+
 # Flask
 from flask import Flask, render_template, request
 from flask import url_for as local_url_for
