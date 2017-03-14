@@ -7,7 +7,7 @@ from setuptools import setup, find_packages     # Always prefer setuptools over 
 
 __author__ = 'chad nelson'
 __project__ = 'vue_flask'
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 
 # Get readme.rst from sphinx docs (if available).
 try:
