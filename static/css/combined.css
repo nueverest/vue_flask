@@ -3046,65 +3046,41 @@ input[type="date"]:focus {
     box-shadow: 0 0 0 0 #fff, 0 0 0 0 #000, 0 0 0 0 #fff, 0 0 0 0 #000; }
   100% {
     box-shadow: 0 0 30px 15.55556px #fff, 0 0 0.3px 18.66667px #000, 0 0 5px 21.78988px #fff, 0 0 1.75px 28px #000; } }
-.margin-15-0-20-0 {
-  margin: 0.9375rem 0rem 1.25rem 0rem; }
+.font-size-1 {
+  font-size: 0.0625rem; }
 
-.bgc-h5276b8 {
-  background-color: #5276b8; }
-
-.line-height-9 {
-  line-height: 0.5625rem; }
-
-.bgc-hf2f2f2 {
-  background-color: #f2f2f2; }
-
-.black {
-  color: black; }
-
-.max-width-100p {
-  max-width: 100%; }
-
-.margin-0-auto {
-  margin: 0rem auto; }
-
-.padding-top-20 {
-  padding-top: 1.25rem; }
-
-.border-radius-3 {
-  border-radius: 0.1875rem; }
-
-.float-right {
-  float: right; }
-
-.bgc-h76b852 {
-  background-color: #76b852; }
-
-.bgc-h52a9b8 {
-  background-color: #52a9b8; }
-
-.margin-left-7 {
-  margin-left: 0.4375rem; }
-
-.font-size-14 {
-  font-size: 0.875rem; }
+.padding-bottom-30 {
+  padding-bottom: 1.875rem; }
 
 .margin-bottom-10 {
   margin-bottom: 0.625rem; }
 
+.white {
+  color: white; }
+
+.border-radius-3 {
+  border-radius: 0.1875rem; }
+
+.margin-top-148 {
+  margin-top: 9.25rem; }
+
+.margin-0-auto {
+  margin: 0rem auto; }
+
 .margin-top-35 {
   margin-top: 2.1875rem; }
 
-.h4b4513 {
-  color: #4b4513; }
+.bgc-hf2f2f2 {
+  background-color: #f2f2f2; }
+
+.font-size-48-i {
+  font-size: 3rem !important; }
 
 .font-size-55-i {
   font-size: 3.4375rem !important; }
 
-.margin-top-16 {
-  margin-top: 1rem; }
-
-.position-relative {
-  position: relative; }
+.text-align-center {
+  text-align: center; }
 
 .margin-top-15 {
   margin-top: 0.9375rem; }
@@ -3112,80 +3088,104 @@ input[type="date"]:focus {
 .font-size-18-i {
   font-size: 1.125rem !important; }
 
-.margin-top-148 {
-  margin-top: 9.25rem; }
+.cursor-pointer {
+  cursor: pointer; }
+
+.bgc-h52a9b8 {
+  background-color: #52a9b8; }
+
+.float-right {
+  float: right; }
 
 .border-radius-5 {
   border-radius: 0.3125rem; }
 
-.font-size-1 {
-  font-size: 0.0625rem; }
+.black {
+  color: black; }
 
-.font-size-16 {
-  font-size: 1rem; }
+.h4b4513 {
+  color: #4b4513; }
 
 .margin-top-10 {
   margin-top: 0.625rem; }
 
-.font-size-48-i {
-  font-size: 3rem !important; }
-
-.padding-bottom-30 {
-  padding-bottom: 1.875rem; }
-
-.bgc-white {
-  background-color: white; }
+.bgc-black {
+  background-color: black; }
 
 .line-height-2rem {
   line-height: 2rem; }
 
-.font-size-18 {
-  font-size: 1.125rem; }
-
-.bold {
-  font-weight: bold; }
-
-.inline-block {
-  display: inline-block; }
-
-.margin-top-20-i {
-  margin-top: 1.25rem !important; }
+.font-size-14 {
+  font-size: 0.875rem; }
 
 .margin-top-69 {
   margin-top: 4.3125rem; }
 
-.bgc-hfde942 {
-  background-color: #fde942; }
+.line-height-9 {
+  line-height: 0.5625rem; }
 
-.cursor-pointer {
-  cursor: pointer; }
+.position-relative {
+  position: relative; }
 
-.text-align-center {
-  text-align: center; }
+.margin-top-16 {
+  margin-top: 1rem; }
 
-.width-93p {
-  width: 93%; }
+.bold {
+  font-weight: bold; }
 
-.margin-top-20 {
-  margin-top: 1.25rem; }
+.padding-top-20 {
+  padding-top: 1.25rem; }
 
-.white {
-  color: white; }
+.bgc-h5276b8 {
+  background-color: #5276b8; }
+
+.margin-top-20-i {
+  margin-top: 1.25rem !important; }
+
+.max-width-100p {
+  max-width: 100%; }
 
 .bgc-h31466e {
   background-color: #31466e; }
 
-.font-size-36-i {
-  font-size: 2.25rem !important; }
+.bgc-h76b852 {
+  background-color: #76b852; }
 
-.bgc-black {
-  background-color: black; }
+.margin-top-20 {
+  margin-top: 1.25rem; }
+
+.font-size-16 {
+  font-size: 1rem; }
 
 .hb85276 {
   color: #b85276; }
 
+.margin-15-0-20-0 {
+  margin: 0.9375rem 0rem 1.25rem 0rem; }
+
+.bgc-hfde942 {
+  background-color: #fde942; }
+
+.margin-left-7 {
+  margin-left: 0.4375rem; }
+
+.width-93p {
+  width: 93%; }
+
+.font-size-18 {
+  font-size: 1.125rem; }
+
 .padding-20 {
   padding: 1.25rem; }
+
+.bgc-white {
+  background-color: white; }
+
+.inline-block {
+  display: inline-block; }
+
+.font-size-36-i {
+  font-size: 2.25rem !important; }
 
 .padding-16-s-i {
   padding: 1rem !important; }
