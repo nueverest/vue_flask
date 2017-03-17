@@ -10,6 +10,24 @@
 
 # Development
 
+# How to Setup blowdrycss (optional tool for rapidly styling the frontend)
+- Activate project virtual environment
+- `pip install blowdrycss`
+- Navigate to project folder.
+- Run `blowdrycss`
+- Open the newly created blowdrycss_settings.py file.
+- Change the following variable to match these values:
+- project_directory = path.join(cwd, 'templates')
+- css_directory = path.join(cwd, 'static', 'scss')
+- output_file_name = '_blowdry'
+- output_extension = '.scss'
+- auto_generate = True            
+- human_readable = True           
+- minify = False
+- Go to the px_to_em() function
+- Find this line `em = str(em) + 'em'`
+- Change to this `em = str(em) + 'rem'`
+
 # Prerequisite for npm powered automation
 - Install node package manager (npm) on your machine.
 - Place npm on the system path.
