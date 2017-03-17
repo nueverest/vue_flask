@@ -33,24 +33,6 @@ character to a file requires the full project to be uploaded.  Projects take min
 - Python 2.7.x (Zappa will NOT work with Python 3.x because AWS Lambda is only 2.7.x compatible.)
 - See requirements.txt
 
-# How to Setup blowdrycss
-- Activate project virtual environment
-- `pip install blowdrycss`
-- Navigate to project folder.
-- Run `blowdrycss`
-- Open the newly created blowdrycss_settings.py file.
-- Change the following variable to match these values:
-- project_directory = path.join(cwd, 'templates')
-- css_directory = path.join(cwd, 'static', 'scss')
-- output_file_name = '_blowdry'
-- output_extension = '.scss'
-- auto_generate = True            
-- human_readable = True           
-- minify = False
-- Go to the px_to_em() function
-- Find this line `em = str(em) + 'em'`
-- Change to this `em = str(em) + 'rem'`
-
 # How to Setup Firebase
 - Setup a firebase account.
 - In firebase, click "Create New Project".
