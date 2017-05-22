@@ -30,7 +30,7 @@ character to a file requires the full project to be uploaded.  Projects take min
 - Amazon Web Services (AWS) - Cloud Infrastructure - S3, Lambda, API Gateway, CloudWatch, IAM https://aws.amazon.com/
 
 # Requirements
-- Python 2.7.x (Zappa will NOT work with Python 3.x because AWS Lambda is only 2.7.x compatible.)
+- Python 2.7.x or Python 3.4+ 
 - See requirements.txt
 
 # How to Setup Firebase
